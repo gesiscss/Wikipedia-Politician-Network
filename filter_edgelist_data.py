@@ -12,7 +12,7 @@ def get_files(path):
     """ Returns a list of files in a directory
         Input parameter: path to directory
     """
-    mypath = "data/edge-list/"
+    mypath = path
     complete = [f for f in listdir(mypath) if isfile(join(mypath, f))]
     return complete
 
