@@ -27,11 +27,12 @@ def fetch_gender(name_list, genderize_obj):
         
         # sometimes helps to be polite
         if i % 5 == 0:
-            time.sleep(5)
+            time.sleep(2)
         try:
             resp = genderize_obj.get(name_list[i:i + 10])
         except Exception as e:
             print(e)
+            print(name_list[i:i + 10])
             time.sleep(120)
             resp = genderize_obj.get(name_list[i:i + 10])
             print("Had a 2 minute break")
