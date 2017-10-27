@@ -11,29 +11,7 @@ import http.cookiejar
 import json
 import pandas as pd
 from datetime import datetime
-
-
-# In[14]:
-
-def get_soup(url,header):
-    resp = requests.get(url,headers=header)
-    return BeautifulSoup(resp.content,'html.parser')
-
-
-query = "Nikola+Tesla" # you can change the query for the image  here
-image_type="ActiOn"
-url="https://www.google.co.in/search?q="+query+"&source=lnms&tbm=isch"
-# print(url)
-#add the directory for your image here
-# DIR="Pictures"
-header={
-    'User-Agent':
-    "Mozilla/5.0 (Windows NT 6.1; WOW64)AppleWebKit/537.36 (KHTML, like Gecko)Chrome/43.0.2357.134 Safari/537.36"
-}
-soup = get_soup(url,header)
-
-
-# In[37]:
+import sys
 
 def get_soup(url,header):
     """ Returns beautiful soup object for specified url
@@ -41,17 +19,6 @@ def get_soup(url,header):
     resp = requests.get(url,headers=header)
     return BeautifulSoup(resp.content,'html.parser')
 
-
-# In[17]:
-
-# actual_images=[] 
-# for a in soup.find_all("div",{"class":"rg_meta"})[:5]:
-#     link = json.loads(a.text)["ou"]
-# #     link , Type =json.loads(a.text)["ou"]  ,json.loads(a.text)["ity"]
-#     actual_images.append((link))
-
-
-# In[38]:
 
 def get_url_list(soup, num): 
     """ Returns top 'num' image URLs
@@ -63,13 +30,6 @@ def get_url_list(soup, num):
         actual_images.append((link))
     return actual_images
 
-
-# In[35]:
-
-# get_url_list(soup)
-
-
-# In[29]:
 
 def load_list(path,col,typ="csv"):
     """ Returns list of unique names 
@@ -83,25 +43,15 @@ def load_list(path,col,typ="csv"):
     return []
 
 
-# In[34]:
-
-# names = load_list("full_names.csv","name")
-# len(names)
-
-
-# In[36]:
-
 def get_query(name):
     """ Returns query url for specified name
     """
     return "https://www.google.co.in/search?q="+name+"&source=lnms&tbm=isch"
 
 
-# In[113]:
-
-# path = "full_names.csv"
-
 def return_url_df(path, path_save):
+    """ Returns dataframe with 5 urls for each name, and each url is a value in one column
+    """
     names = load_list(path, "name")
     print(str(len(names))+" names loaded!")
 #     lst = list(names)
@@ -141,17 +91,15 @@ def return_url_df(path, path_save):
     return df
 
 
-# In[111]:
+if __name__ == "__main__":
 
-df = return_url_df(path, "test.csv")
+    input_path = sys.argv[1]
+    output_path = sys.argv[2]
 
-
-# In[80]:
-
-# pd.read_csv("C:/Users/vujovisn/Documents/dev/altmetrics-twitter/gender_detection/google_img/out_gend_formal.csv")
+    df = return_url_df(input_path, output_path)
 
 
-# In[ ]:
+
 
 
 
