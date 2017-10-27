@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 import requests
 import re
 import os
-import http.cookiejar
+# import http.cookiejar
 import json
 import pandas as pd
 from datetime import datetime
