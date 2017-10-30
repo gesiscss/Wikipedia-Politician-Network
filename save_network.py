@@ -39,14 +39,21 @@ def load_df(path, file):
 
 # In[40]:
 
-def set_attributes(dataframe, attribute_dataframe):
+def set_attributes(dataframe, attribute_dataframe, graph_type = 'dir'):
     """ Returns a network with attributes assigned to each node
         Input parameters:
         1. dataframe - edge list
-        3. attribute_dataframe - contains node id, and attributes (name, parrty, nationality, occupation, gender)
+        2. attribute_dataframe - contains node id, and attributes (name, parrty, nationality, occupation, gender)
+        3. graph_type - 'dir' or 'undir'
     """
+    
     # load dataframe as graph
-    G = nx.from_pandas_dataframe(dataframe,'from','to')
+    if graph_type == 'dir':
+        G = nx.from_pandas_dataframe(dataframe,'from','to', edge_attr=False, create_using=nx.DiGraph())
+    elif graph_type == 'undir':
+        G = nx.from_pandas_dataframe(dataframe,'from','to', edge_attr=False, create_using=nx.Graph())
+
+#     G = nx.from_pandas_dataframe(dataframe,'from','to')
     # get list of nodes
     node_list = G.nodes()
     # create dictionaries
@@ -71,15 +78,20 @@ def set_attributes(dataframe, attribute_dataframe):
     
     return G, num_n, num_e 
 
-def save_network(G, path_save,file):
+def save_network(G, path_save,file,graph_type):
     """ Saves network on specified path as PICKLE
         Input parameters:
         1. Graph
         2. path_save - path to directory
         3. file name
+        4. graph_type, if dir graph sufix added to title
     """
-    print("Network saved as pickle on PATH: ", path_save+"/"+file)
-    nx.write_gpickle(G,path_save+"/"+file)
+    if graph_type == "dir":
+        print("Network saved as pickle on PATH: ", path_save+"/"+file+"_"+graph_type)
+        nx.write_gpickle(G,path_save+"/"+file+"_"+graph_type)
+    else:
+        print("Network saved as pickle on PATH: ", path_save+"/"+file)
+        nx.write_gpickle(G,path_save+"/"+file)
 
 
 
@@ -87,6 +99,7 @@ if __name__ == "__main__":
 
     path_files = sys.argv[1]
     path_save = sys.argv[2]
+    graph_type = sys.argv[3]
 
     # clean politician data
     politician_data = pd.read_csv("data/politician-data.csv",quotechar='"',sep="\t",converters=
@@ -108,13 +121,16 @@ if __name__ == "__main__":
     for file in files:
         print(file)
         net_df = load_df(path_files,file)
-        G, num_n, num_e = set_attributes(net_df, politician_data)
+        G, num_n, num_e = set_attributes(net_df, politician_data,graph_type)
         sub_lst = [file,num_n, num_e]
         lst.append(sub_lst)
-        save_network(G,path_save,file.replace(".csv",""))
+        save_network(G,path_save,file.replace(".csv",""),graph_type)         
     df = pd.DataFrame(lst)
     df.columns = ["file","nodes","edges"]
-    df.to_csv(path_save+"/stats.csv")
+    if graph_type == 'dir':
+        df.to_csv(path_save+"/stats_{}.csv".format(graph_type))
+    else:
+        df.to_csv(path_save+"/stats.csv")
 
 
 
