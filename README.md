@@ -18,8 +18,8 @@ python filter_edgelist_data.py [path_copy] [path_paste] [interval]
 
 ### save_network.py 
 
-The script iterates through the specified edge list files (**path_files**) , loads them as networkx graphs, and assignes attributes to all nodes of the graph. Finnaly, it saves each graph in a pickle in the specified location (**save_path**)
+The script iterates through the specified edge list files (**path_files**) , loads them as networkx graphs, and assignes attributes to all nodes of the graph. Finnaly, it saves each graph in a pickle in the specified location (**save_path**). It is also posible to choose the type of graph 'dir' for directed or 'undir' for undirected. Additionaly, a graph size (number of nodes and edges) statistic is generated in the end.
 
 ```{r, engine='bash', count_lines}
-python save_network.py [path_files] [path_save] 
+python save_network.py [path_files] [path_save] [graph_type]
 ```
