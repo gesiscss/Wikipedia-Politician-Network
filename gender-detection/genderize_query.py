@@ -106,6 +106,16 @@ def save_file(df, path, typ="json"):
         df.to_json(path)
     print("File saved at: " + path)
 
+def save_lst_as_df(lst,col_name,path,header=True, index=False, encoding = "utf-8"):
+    """ Saves a 1D list as dataframe with specified column name
+    """
+    df = pd.DataFrame({
+    col_name: lst  
+    })
+    df.to_csv(path,header=header,index=index,encoding = encoding)
+    print("Dataframe saved at: "+path)
+    return df 
+
 def get_gender_dictionaty(df):
     """ Returns a dictionary where KEY is FIRST NAME and VALUE is GENDER
     """
