@@ -68,7 +68,7 @@ def stats(d, total):
     return d
 
 
-def gender_df(path, path_save, thres=70):
+def gender_df(path, path_save, thres=70, encoding='utf-8'):
     """ Returns df with assigned gender with specified confidence, and also saves df
         in a csv file.
     """
@@ -81,7 +81,7 @@ def gender_df(path, path_save, thres=70):
     print("Total names:", len(names))
     print("Saving: " + path_save)
     df = name_gender_lsit(df, names)
-    df.to_csv(path_save, index=False)
+    df.to_csv(path_save, index=False, encoding=encoding)
     dic = df.gender.value_counts().to_dict()
     print(dic)
     print(stats(dic, len(names)))
