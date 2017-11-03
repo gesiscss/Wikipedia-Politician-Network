@@ -20,6 +20,19 @@ def clean(x):
     else: 
         return ast.literal_eval(x)
 
+def convert_date(date_lst):
+    """ Converts a string type date into a datetime type date
+    """
+    if date_lst == []:
+        return None
+    date = date_lst[0].strip(" ")
+    try:
+        date = datetime.strptime(date, '%Y-%m-%d')
+        return date
+    except:
+#         print(date)
+        return None
+
 def get_files(path):
     """ Returns a list of files in a directory
         Input parameter: path to directory
@@ -111,6 +124,12 @@ if __name__ == "__main__":
     politician_data["nationality"] = politician_data["nationality"].apply(clean)
 
     politician_data["name"] = politician_data["name"].apply(clean)
+
+    politician_data["birthDate"] = politician_data["birthDate"].apply(clean)
+    politician_data["deathDate"] = politician_data["deathDate"].apply(clean)
+
+    politician_data["birthDate"] = politician_data["birthDate"].apply(convert_date)
+    politician_data["deathDate"] = politician_data["deathDate"].apply(convert_date)
 
     
     files = get_files(path_files)
