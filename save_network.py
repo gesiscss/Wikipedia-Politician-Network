@@ -76,12 +76,18 @@ def set_attributes(dataframe, attribute_dataframe, graph_type = 'dir'):
     occupation_data = data[["ID","occupation"]].set_index('ID')['occupation'].to_dict()
     nationality_data = data[["ID","nationality"]].set_index('ID')['nationality'].to_dict()
     party_data = data[["ID","party"]].set_index('ID')['party'].to_dict()
+    birth = data[["ID","birthDate"]].set_index('ID')['birthDate'].to_dict()
+    death = data[["ID","deathDate"]].set_index('ID')['deathDate'].to_dict()
+
+
     # set attributes 
     nx.set_node_attributes(G, 'gender', gender_data)
     nx.set_node_attributes(G, 'name', name_data)
     nx.set_node_attributes(G, 'occupation', occupation_data)
     nx.set_node_attributes(G, 'nationality', nationality_data)
     nx.set_node_attributes(G, 'party', party_data)
+    nx.set_node_attributes(G, 'birthDate', birth)
+    nx.set_node_attributes(G, 'deathDate', death)
     
     #print stuff
     num_n = len(G.nodes())
