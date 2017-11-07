@@ -120,24 +120,29 @@ if __name__ == "__main__":
     path_save = sys.argv[2]
     graph_type = sys.argv[3]
 
-    # clean politician data
-    politician_data = pd.read_csv("data/politician-data.csv",quotechar='"',sep="\t",converters=
-                              {"occupation":ast.literal_eval})
+    # # clean politician data
+    # politician_data = pd.read_csv("data/politician-data.csv",quotechar='"',sep="\t",converters=
+    #                           {"occupation":ast.literal_eval})
 
-    politician_data["party"] = politician_data["party"].apply(clean)
+    # politician_data["party"] = politician_data["party"].apply(clean)
 
 
-    politician_data["nationality"] = politician_data["nationality"].apply(clean)
+    # politician_data["nationality"] = politician_data["nationality"].apply(clean)
 
-    politician_data["name"] = politician_data["name"].apply(clean)
+    # politician_data["name"] = politician_data["name"].apply(clean)
 
-    politician_data["birthDate"] = politician_data["birthDate"].apply(clean)
-    politician_data["deathDate"] = politician_data["deathDate"].apply(clean)
+    # politician_data["birthDate"] = politician_data["birthDate"].apply(clean)
+    # politician_data["deathDate"] = politician_data["deathDate"].apply(clean)
 
-    politician_data["birthDate"] = politician_data["birthDate"].apply(convert_date)
-    politician_data["deathDate"] = politician_data["deathDate"].apply(convert_date)
+    # politician_data["birthDate"] = politician_data["birthDate"].apply(convert_date)
+    # politician_data["deathDate"] = politician_data["deathDate"].apply(convert_date)
 
-    
+    # # replacing gender with infered gender
+    # politician_data = pd.read_json("data/politicians_with_gender.json")["gender"]
+
+    ######## ADD DATA SOURCE HERE: 
+    politician_data = pd.read_pickle("data/politicians_with_gender")
+
     files = get_files(path_files)
 
 
