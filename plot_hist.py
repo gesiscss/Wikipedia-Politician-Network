@@ -107,8 +107,10 @@ def hist(degree,kcore,clust,fpath=None,text=None):
     degree_ylim=(1e-6,1)
     
     ax2.set_yscale('log') 
-    ax.set_yscale('log') 
+    ax.set_yscale('linear') 
     ax.set_xscale('log') 
+    ax3.set_xscale('log') 
+    ax2.set_xscale('log') 
     
     
     ax.set_ylim(degree_ylim)
@@ -151,23 +153,26 @@ def hist(degree,kcore,clust,fpath=None,text=None):
     y = int(text) 
     # print fpath
 
-    plt.show()
+    # plt.show()
 
     plt.savefig(fpath,bbox_inches='tight')
     
 plt.close('all')
 
-g = nx.read_gpickle("data/graphs_sats/2003_12_dir_dir")
+g = nx.read_gpickle("data/graphs_sats/2016_12_dir_dir")
 
 mg = stat.filter_graph(g,"gender","male")
 fg = stat.filter_graph(g,"gender","female")
-    # in_deg = nx.get_node_attributes(fg,'in_degree')
-    # tp = (('female', nx.get_node_attributes(fg,'in_degree')), ('male', nx.get_node_attributes(mg,'in_degree')))
-    # print(tuple(nx.get_node_attributes(fg,'in_degree')))
+        # in_deg = nx.get_node_attributes(fg,'in_degree')
+        # tp = (('female', nx.get_node_attributes(fg,'in_degree')), ('male', nx.get_node_attributes(mg,'in_degree')))
+        # print(tuple(nx.get_node_attributes(fg,'in_degree')))
 dic = {}
 dic['female'] = nx.get_node_attributes(fg,'in_degree')
 dic['male'] = nx.get_node_attributes(mg,'in_degree')
+k_core = {}
+k_core['female'] = nx.get_node_attributes(fg,'k_core')
+k_core['male'] = nx.get_node_attributes(mg,'k_core')
 d_degree = dic
-d_kcore =  dic
+d_kcore =  k_core
 efficiency = d_kcore
-hist(d_degree,d_kcore,efficiency,"testtt.png",text='2016')
+hist(d_degree,d_kcore,efficiency,"testtt.png",text='2016_12')
