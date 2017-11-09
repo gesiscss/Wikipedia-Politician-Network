@@ -175,4 +175,4 @@ k_core['male'] = nx.get_node_attributes(mg,'k_core')
 d_degree = dic
 d_kcore =  k_core
 efficiency = d_kcore
-hist(d_degree,d_kcore,efficiency,"testtt.png",text='2016_12')
+hist(d_degree,d_kcore,efficiency,"testtt.png",text='2016')

@@ -107,9 +107,9 @@ def save_network(G, path_save,file,graph_type):
     """
     if graph_type == "dir":
         print("Network saved as pickle on PATH: ", path_save+"/"+file+"_"+graph_type)
-        nx.write_gpickle(G,path_save+"/"+file+"_"+graph_type)
+        nx.write_gpickle(G,path_save+"/"+file+"_"+graph_type, protocol=2)
     else:
-        print("Network saved as pickle on PATH: ", path_save+"/"+file)
+        print("Network saved as pickle on PATH: ", path_save+"/"+file, protocol=2)
         nx.write_gpickle(G,path_save+"/"+file)
 
 

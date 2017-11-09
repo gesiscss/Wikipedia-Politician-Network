@@ -144,7 +144,7 @@ if __name__ == '__main__':
     nxG.add_edge("v5", "v6", weight=0.21, label="follows")
 
     for item in nxG.edges_iter(data=True):
-        print item
+        print(item)
 
     # Convert to graph-tool graph
     gtG = nx2gt(nxG)
