@@ -23,3 +23,30 @@ The script iterates through the specified edge list files (**path_files**) , loa
 ```{r, engine='bash', count_lines}
 python save_network.py [path_files] [path_save] [graph_type]
 ```
+
+### filter_graphs.py 
+
+This script copies fiels from **path_copy** to **path_paste**. The files are specified in the **filter.csv** file
+
+```{r, engine='bash', count_lines}
+python filter_graphs.py [path_copy] [path_paste] [filter.csv]
+```
+
+### calculate_efficiency.py 
+
+This script loads **networkx** graphs, using the **gt2nx** implementation transforms them into **graph_tool** graphs, uses the **burt_measure.py** implementation to calculate efficiency. Outputs a csv file with node id and its efficiency.
+
+```{r, engine='bash', count_lines}
+python calculate_efficiency.py
+```
+
+### add_stats_to_network.ipynb 
+
+Inside of this notebook, properties and stats are added for each node of the graph
+
+### add_efficiency.ipynb 
+
+Inside of this notebook, efficiency, which was previously calculated using the graph_tool iplementation is transformed into a dictionary and then added to the networkx graphs.
+
+
+
