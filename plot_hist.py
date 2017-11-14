@@ -89,9 +89,9 @@ def hist(degree,kcore,clust,fpath=None,text=None):
 
     for  gender , xy in get_xy(degree).items():
         x,y = xy
-        print("DEGREE: ")
-        print("X: ", x)
-        print("Y: ", y)
+        # print("DEGREE: ")
+        # print("X: ", x)
+        # print("Y: ", y)
         l = ax.plot(x,y, ls[gender],color=colors[gender],label=labels[gender],lw=5,)
     ax.set_xlabel(r'Degree (d)',fontsize=33)
     ax.set_ylabel(r'P(x $\geq$ d)',fontsize=33)
@@ -100,9 +100,9 @@ def hist(degree,kcore,clust,fpath=None,text=None):
 
     for  gender , xy in get_xy(kcore).items():
         x,y = xy
-        print("K-CORE: ")
-        print("X: ", x)
-        print("Y: ", y)
+        # print("K-CORE: ")
+        # print("X: ", x)
+        # print("Y: ", y)
         a = ax2.plot(x,y , ls[gender],color=colors[gender],label=labels[gender],lw=4.,)
     
     ax2.set_xlabel(r'k-core (k)',fontsize=20)
@@ -113,9 +113,9 @@ def hist(degree,kcore,clust,fpath=None,text=None):
 
     for gender, xy in get_xy(clust).items():
         x,y = xy
-        print("EFF: ")
-        print("X: ", x)
-        print("Y: ", y)
+        # print("EFF: ")
+        # print("X: ", x)
+        # print("Y: ", y)
         a = ax3.plot(x,y, ls[gender],color=colors[gender],label=labels[gender],lw=4.,)
     xlabels = ax3.get_xticklabels()
     for label in xlabels:
@@ -183,33 +183,44 @@ def hist(degree,kcore,clust,fpath=None,text=None):
     
 plt.close('all')
 
-files = get_files("data/graphs_eff")
+c_names = {
+    'all': 'global',
+    'us': "american",
+    "de": "german",
+    "gb": "british",
+    "fr": "french",
+    "ru": "russian"
+}
 
-for file in files:
-    g = nx.read_gpickle("data/graphs_eff/"+file)
+for name in c_names.keys():
+    path = "data/graphs_eff/"+name
+    files = get_files(path)
 
-    mg = stat.filter_graph(g,"gender","male")
-    fg = stat.filter_graph(g,"gender","female")
-            # in_deg = nx.get_node_attributes(fg,'in_degree')
-            # tp = (('female', nx.get_node_attributes(fg,'in_degree')), ('male', nx.get_node_attributes(mg,'in_degree')))
-            # print(tuple(nx.get_node_attributes(fg,'in_degree')))
-    deg = {}
-    deg['female'] = nx.get_node_attributes(fg,'in_degree')
-    deg['male'] = nx.get_node_attributes(mg,'in_degree')
+    for file in files:
+        g = nx.read_gpickle(path+"/"+file)
 
-    k_core = {}
-    k_core['female'] = nx.get_node_attributes(fg,'k_core')
-    k_core['male'] = nx.get_node_attributes(mg,'k_core')
+        mg = stat.filter_graph(g,"gender","male")
+        fg = stat.filter_graph(g,"gender","female")
+                # in_deg = nx.get_node_attributes(fg,'in_degree')
+                # tp = (('female', nx.get_node_attributes(fg,'in_degree')), ('male', nx.get_node_attributes(mg,'in_degree')))
+                # print(tuple(nx.get_node_attributes(fg,'in_degree')))
+        deg = {}
+        deg['female'] = nx.get_node_attributes(fg,'in_degree')
+        deg['male'] = nx.get_node_attributes(mg,'in_degree')
 
-    eff = {}
-    eff['female'] = nx.get_node_attributes(fg,'efficiency')
-    eff['male'] = nx.get_node_attributes(mg,'efficiency')
+        k_core = {}
+        k_core['female'] = nx.get_node_attributes(fg,'k_core')
+        k_core['male'] = nx.get_node_attributes(mg,'k_core')
 
-    # print("----")
-    # print(deg)
-    d_degree = deg
-    d_kcore =  k_core
-    efficiency = eff
-    year = int(file.split("_")[0])
-    save = "plots/hist_plot/"+file
-    hist(d_degree,d_kcore,efficiency,save,text=year)
+        eff = {}
+        eff['female'] = nx.get_node_attributes(fg,'efficiency')
+        eff['male'] = nx.get_node_attributes(mg,'efficiency')
+
+        # print("----")
+        # print(deg)
+        d_degree = deg
+        d_kcore =  k_core
+        efficiency = eff
+        year = int(file.split("_")[0])
+        save = "plots/hist_plot/"+name+"/"+file
+        hist(d_degree,d_kcore,efficiency,save,text=year)
