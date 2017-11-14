@@ -32,7 +32,7 @@ This script copies fiels from **path_copy** to **path_paste**. The files are spe
 python filter_graphs.py [path_copy] [path_paste] [filter.csv]
 ```
 
-### calculate_efficiency.py 
+### calculate_efficiency.py (python 2.7.x)
 
 This script loads **networkx** graphs, using the **gt2nx** implementation transforms them into **graph_tool** graphs, uses the **burt_measure.py** implementation to calculate efficiency. Outputs a csv file with node id and its efficiency.
 
@@ -40,7 +40,7 @@ This script loads **networkx** graphs, using the **gt2nx** implementation transf
 python calculate_efficiency.py
 ```
 
-### hist_plot.py
+### hist_plot.py (python 2.7.x)
 
 Saves 6 figures with two sub figures each. In this particular case, contains degree distribution, k_core distribution and efficiency distribution for both genders. 
 ```{r, engine='bash', count_lines}
