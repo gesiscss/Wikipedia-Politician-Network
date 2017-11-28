@@ -44,20 +44,20 @@ def cum_views(resp_dict, year):
             views += dic['views']
     return views
 
-data = pd.read_json("../data/politicians_with_gender.json")
+# data = pd.read_json("../data/politicians_with_gender.json")
 
-data["url_name"] = data["WikiURL"].apply(lambda x: x.split("/wiki/")[1])
+# data["url_name"] = data["WikiURL"].apply(lambda x: x.split("/wiki/")[1])
 
 
-names_df = data[["ID", "url_name"]]
-len(names_df)
+# names_df = data[["ID", "url_name"]]
+# len(names_df)
 
-df1, df2, df3, df4 = np.array_split(names_df, 4)
+# df1, df2, df3, df4 = np.array_split(names_df, 4)
 
-df1.to_csv("set1.csv", index=False, encoding="utf-8")
-df2.to_csv("set2.csv", index=False, encoding="utf-8")
-df3.to_csv("set3.csv", index=False, encoding="utf-8")
-df4.to_csv("set4.csv", index=False, encoding="utf-8")
+# df1.to_csv("set1.csv", index=False, encoding="utf-8")
+# df2.to_csv("set2.csv", index=False, encoding="utf-8")
+# df3.to_csv("set3.csv", index=False, encoding="utf-8")
+# df4.to_csv("set4.csv", index=False, encoding="utf-8")
 
 if __name__ == '__main__':
 
