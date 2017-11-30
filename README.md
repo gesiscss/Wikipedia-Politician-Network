@@ -8,6 +8,8 @@ The data used for this project is located in the politician-data-wikipedia-edge-
 * Edge list files - containing edges between politician pages on Wikipedia through time
 * Politician data - data about the politicians that can be found on Wikipedia
 
+## Scripts
+
 ### filter_edgelist_data.py 
 
 As every file contains an edge lists for a specific month, i.e. 2016_5.csv - this is May 2016. Sometimes it is neded to filter out the files to a monthly **interval** 4m (every 4 months),6m (every 6 months),12m (every 12 months). Runing this script one should get all files in specified folder (**path_copy**), filter them according to the specified **interval**, and store them in the appropriate directory **path paste**
@@ -39,6 +41,8 @@ This script loads **networkx** graphs, using the **gt2nx** implementation transf
 ```{r, engine='bash', count_lines}
 python calculate_efficiency.py
 ```
+
+## Notebooks
 
 ### hist_plot.py (python 2.7.x)
 
