@@ -55,5 +55,8 @@ Inside of this notebook, properties and stats are added for each node of the gra
 
 Inside of this notebook, efficiency, which was previously calculated using the graph_tool iplementation is transformed into a dictionary and then added to the networkx graphs.
 
+### network_size.ipynb 
+
+Plots - network size and ratio are produced with codes from this notebook
 
 
