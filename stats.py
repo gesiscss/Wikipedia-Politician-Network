@@ -63,13 +63,15 @@ def filter_graph(G, attribute, value):
 # files = get_files(files_path)[:-1]
 
 def get_ratio(x):
+    """ Returns a single value for female to male ratio
+    """
     if x['f_nodes'] == 0:
         return float('Inf')
     else:
-        return x['m_nodes']/x['f_nodes']
+        return x['f_nodes']/x['m_nodes']
 
 def male_to_female_ratio(df):
-    """ Returns ratio for number of male nodes and female nodes
+    """ Returns an arraz of ratio values for number of male nodes and female nodes
     """
     df["ratio"] = df.apply(get_ratio, axis=1)
     df = df.sort_values("file")
