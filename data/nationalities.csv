@@ -1,0 +1,368 @@
+,name,nationality
+0,6080,american
+1,3259,indian
+2,2442,mexican
+3,2419,french
+4,1927,norwegian
+5,1843,german
+6,1388,canadian
+7,1225,australian
+8,1186,irish
+9,1124,pakistani
+10,1100,polish
+11,911,italian
+12,787,russian
+13,702,israeli
+14,696,swedish
+15,695,spanish
+16,646,macanese
+17,575,british
+18,570,malaysian
+19,539,belgian
+20,514,turkish
+21,433,argentine
+22,403,ukrainian
+23,390,nigerian
+24,386,romanian
+25,355,finnish
+26,341,albanian
+27,337,brazilian
+28,314,moldovan
+29,304,croatian
+30,301,sri lankan
+31,296,dutch
+32,275,austrian
+33,265,japanese
+34,261,colombian
+35,247,serbian
+36,244,ghanaian
+37,229,chilean
+38,221,iraqi
+39,220,bulgarian
+40,211,afghan
+41,207,czech
+42,198,uruguayan
+43,195,portuguese
+44,192,danish
+45,188,singaporean
+46,186,chinese
+47,184,moroccan
+48,177,lebanese
+49,168,syrian
+50,166,lithuanian
+51,162,swiss
+52,162,egyptian
+53,161,fijian
+54,159,indonesian
+55,150,ugandan
+56,149,namibian
+57,148,cambodian
+58,146,kenyan
+59,143,philippine
+60,143,armenian
+61,131,zimbabwean
+62,128,south african
+63,128,peruvian
+64,125,venezuelan
+65,124,bangladeshi
+66,121,burmese
+67,121,estonian
+68,118,latvian
+69,118,icelandic
+70,117,filipinos
+71,115,belarusian
+72,112,honduran
+73,111,cuban
+74,99,vietnamese
+75,99,hungarian
+76,98,haitian
+77,96,tanzanian
+78,92,slovak
+79,92,greek
+80,88,tunisian
+81,85,macedonian
+82,85,iranian
+83,85,palestinian
+84,84,dominican
+85,80,ecuadorian
+86,77,poles
+87,76,bolivian
+88,76,libyan
+89,75,croats
+90,74,thai
+91,74,congolese
+92,73,georgian
+93,72,serbs
+94,70,malawian
+95,67,ethiopian
+96,66,guatemalan
+97,65,russia
+98,63,paraguayan
+99,61,gabonese
+100,61,manx
+101,59,sudanese
+102,59,maltese
+103,58,algerian
+104,55,mongolian
+105,52,yemeni
+106,50,nepali
+107,49,belizean
+108,45,spaniards
+109,45,jamaican
+110,44,soviet union
+111,44,guinean
+112,43,jordanian
+113,42,nigerien
+114,41,cypriot
+115,40,angolan
+116,39,south korean
+117,39,tuvaluan
+118,38,sierra leonean
+119,37,senegalese
+120,37,kingdom of hawaii
+121,36,nicaraguan
+122,36,zambian
+123,36,montenegrin
+124,35,mauritian
+125,34,sammarinese
+126,34,cameroonian
+127,34,guyanese
+128,34,finns
+129,33,malagasy
+130,31,soviet people
+131,31,faroese
+132,31,new zealand
+133,30,right of abode in hong kong
+134,30,ivorian
+135,29,salvadoran
+136,29,kuwaiti
+137,28,panamanian
+138,28,burkinabé
+139,28,surinamese
+140,28,bahraini
+141,27,liberian
+142,27,eritrean
+143,27,mozambican
+144,26,puerto ricans
+145,26,scotland
+146,26,rwandan
+147,25,england
+148,24,grenadian
+149,24,bosniaks
+150,23,azerbaijani
+151,22,somali
+152,22,greenlandic
+153,20,seychellois
+154,20,togolese
+155,20,tajikistani
+156,19,samoan
+157,19,bahamian
+158,17,barbadian
+159,17,chadian
+160,17,maldivian
+161,17,bissau-guinean
+162,16,gibraltar
+163,16,gambian
+164,15,burundian
+165,14,navajo nation
+166,14,citizenship of russia
+167,14,scottish people
+168,14,welsh people
+169,14,ottoman empire
+170,13,tongan
+171,13,bhutanese
+172,12,djiboutian
+173,12,andorran
+174,12,hong kong
+175,11,syria
+176,11,mauritanian
+177,10,qatari
+178,10,nauruan
+179,9,austria-hungary
+180,9,swazi
+181,9,aruban
+182,8,chechens
+183,8,emirati
+184,8,yugoslavia
+185,8,wales
+186,7,marshallese
+187,7,kyrgyzstani
+188,7,omani
+189,7,palauan
+190,7,yugoslavs
+191,7,kingdom of great britain
+192,6,socialist federal republic of yugoslavia
+193,6,kurds
+194,6,hui people
+195,6,nagorno-karabakh
+196,6,kazakhs
+197,6,luxembourg
+198,6,caymanian
+199,6,motswana
+200,6,uyghurs
+201,6,turkmen
+202,6,slovenes
+203,6,swedes
+204,5,slovenian
+205,5,tokelauan
+206,5,basotho
+207,5,ancient rome
+208,5,czechoslovakia
+209,5,south sudanese
+210,5,anguillan
+211,5,prussia
+212,4,liechtenstein
+213,4,costa rican
+214,4,puerto rican
+215,4,kazakhstani
+216,4,republic of hawaii
+217,4,ossetians
+218,4,saudi
+219,4,crimean tatars
+220,4,danes
+221,4,east timor
+222,4,hong kong people
+223,4,great britain
+224,4,kosovo
+225,3,bosnians
+226,3,kurdistan
+227,3,mongols
+228,3,bruneian
+229,3,bermudian
+230,3,tatars
+231,3,kingdom of england
+232,3,qing dynasty
+233,3,i-kiribati
+234,3,antigua
+235,3,komi peoples
+236,3,métis people (canada)
+237,3,timorese
+238,3,abkhazians
+239,3,jews
+240,3,koreans
+241,3,niuean
+242,3,montserratian
+243,2,ivory coast
+244,2,wallachia
+245,2,dargwa people
+246,2,adyghe people
+247,2,pashtuns
+248,2,ingush people
+249,2,central african
+250,2,puerto rican citizenship
+251,2,khmer people
+252,2,karachays
+253,2,viceroyalty of new granada
+254,2,vatican
+255,2,bengalis
+256,2,karelians
+257,2,bahrani people
+258,2,saint lucian
+259,2,hispanic
+260,2,american samoan
+261,2,tibet
+262,1,list of ethnic groups of africa
+263,1,khmer krom
+264,1,maithali
+265,1,macau
+266,1,cherokee
+267,1,udmurt people
+268,1,demographics of ivory coast
+269,1,oneida nation of wisconsin
+270,1,bicolanos
+271,1,yakuts
+272,1,native hawaiians
+273,1,dalmatia
+274,1,crow nation
+275,1,khwarezmian language
+276,1,kingdom of scotland
+277,1,kosovo serbs
+278,1,terai
+279,1,dinka people
+280,1,sotho people
+281,1,zhuang people
+282,1,continent
+283,1,history of the jews in russia
+284,1,yakut
+285,1,mahoran
+286,1,bonaire
+287,1,malian
+288,1,valencian people
+289,1,volga tatars
+290,1,kingdom of dalmatia
+291,1,kashmir
+292,1,comoran
+293,1,demographics of south africa
+294,1,avars (caucasus)
+295,1,sri lankan literature
+296,1,afrikaners
+297,1,ottomanism
+298,1,papua new guinean
+299,1,kingdom of yugoslavia
+300,1,tajiks
+301,1,khakas people
+302,1,piegan blackfeet
+303,1,guamanian
+304,1,kingdom of sardinia
+305,1,byzantine empire
+306,1,lao
+307,1,negros oriental
+308,1,moldavia
+309,1,serbs of bosnia and herzegovina
+310,1,anishinaabe
+311,1,ingrian finns
+312,1,football in scotland
+313,1,statelessness
+314,1,new zealanders
+315,1,non-citizens (latvia)
+316,1,moscow
+317,1,transnistria
+318,1,federation of malaya
+319,1,acholi people
+320,1,republic of german-austria
+321,1,boer
+322,1,list of kurds
+323,1,saxony
+324,1,bosnian or herzegovinian
+325,1,eora
+326,1,tanganyika (territory)
+327,1,dubrovnik
+328,1,texians
+329,1,white south african
+330,1,bashkirs
+331,1,kittitian or nevisian
+332,1,tswana people
+333,1,media of russia
+334,1,icelanders
+335,1,cao wei
+336,1,pitcairn island
+337,1,kingdom of prussia
+338,1,soysuz yalanci
+339,1,demographics of syria
+340,1,tuvans
+341,1,hyderabad
+342,1,aymara people
+343,1,maniots
+344,1,gibraltarians
+345,1,chuvash people
+346,1,basques
+347,1,menominee
+348,1,choctaw
+349,1,red sea afar
+350,1,saskatchewan
+351,1,bamar people
+352,1,madhesi people
+353,1,kashmiris
+354,1,cape verde
+355,1,weimar republic
+356,1,joseon
+357,1,politician
+358,1,antiguan or barbudan
+359,1,muscogee (creek) nation
+360,1,yi people
+361,1,kurdish
+362,1,tat people (caucasus)
+363,1,mordvins
+364,1,beninese
+365,1,khwarazmian dynasty
+366,1,galician language
