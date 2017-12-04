@@ -93,7 +93,7 @@ def hist(degree,kcore,clust,fpath=None,text=None):
         # print("X: ", x)
         # print("Y: ", y)
         l = ax.plot(x,y, ls[gender],color=colors[gender],label=labels[gender],lw=5,)
-    ax.set_xlabel(r'Degree (d)',fontsize=33)
+    ax.set_xlabel(r'Outdegree (d)',fontsize=33)
     ax.set_ylabel(r'P(x $\geq$ d)',fontsize=33)
     
 
@@ -185,11 +185,11 @@ plt.close('all')
 
 c_names = {
     'all': 'global',
-    'us': "american",
+    # 'us': "american",
     "de": "german",
-    "gb": "british",
-    "fr": "french",
-    "ru": "russian"
+    # "gb": "british",
+    # "fr": "french",
+    # "ru": "russian"
 }
 
 for name in c_names.keys():
@@ -204,9 +204,15 @@ for name in c_names.keys():
                 # in_deg = nx.get_node_attributes(fg,'in_degree')
                 # tp = (('female', nx.get_node_attributes(fg,'in_degree')), ('male', nx.get_node_attributes(mg,'in_degree')))
                 # print(tuple(nx.get_node_attributes(fg,'in_degree')))
+        # deg = {}
+        # deg['female'] = nx.get_node_attributes(fg,'in_degree')
+        # deg['male'] = nx.get_node_attributes(mg,'in_degree')
+        # folder = "in"
+
         deg = {}
-        deg['female'] = nx.get_node_attributes(fg,'in_degree')
-        deg['male'] = nx.get_node_attributes(mg,'in_degree')
+        deg['female'] = nx.get_node_attributes(fg,'out_degree')
+        deg['male'] = nx.get_node_attributes(mg,'out_degree')
+        folder = "out"
 
         k_core = {}
         k_core['female'] = nx.get_node_attributes(fg,'k_core')
@@ -222,5 +228,5 @@ for name in c_names.keys():
         d_kcore =  k_core
         efficiency = eff
         year = int(file.split("_")[0])
-        save = "plots/hist_plot/"+name+"/"+file
+        save = "plots/hist_plot/"+name+"/"+folder+"/"+file
         hist(d_degree,d_kcore,efficiency,save,text=year)
