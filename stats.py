@@ -62,18 +62,40 @@ def filter_graph(G, attribute, value):
 
 # files = get_files(files_path)[:-1]
 
-def get_ratio(x):
+def get_ratio(x, typ='fm'):
     """ Returns a single value for female to male ratio
+        'fm' is for female to male ratio
+        'mf' is for male to female ratio
     """
-    if x['f_nodes'] == 0:
-        return float('Inf')
-    else:
-        return x['f_nodes']/x['m_nodes']
+    # print(type(x['f_nodes']))
+    # print(type(x['m_nodes']))
+    # print(x)
+    f = x['f_nodes']
+    m = x['m_nodes']
+    
+    # print(m)
+    # print(f.add(1))
+    # print(m.add(1))
 
-def male_to_female_ratio(df):
-    """ Returns an arraz of ratio values for number of male nodes and female nodes
+    if typ == 'fm':
+        # if f == 0:
+        #     f = float('Inf')
+        # if f != 0 and m == 0:
+        #     f = f+1
+        #     m = m+1
+        #     return f/(f+m)
+        if f+m ==0:
+            return 0
+        return f/(f+m)
+    if typ == 'mf':
+        # 
+        # if f+m ==0:
+        #     return 0
+        return m/(f+m)
+def get_ratio_array(df, typ='fm'):
+    """ Returns an array of ratio values for number of male nodes and female nodes
     """
-    df["ratio"] = df.apply(get_ratio, axis=1)
+    df["ratio"] = df.apply(lambda x: get_ratio(x, typ), axis=1)
     df = df.sort_values("file")
     ratio = df.ratio.values
     return ratio
