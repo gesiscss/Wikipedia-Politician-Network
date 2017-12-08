@@ -1,4 +1,4 @@
-# Wikipedia-Politician-Network
+# Temporal Network of Politicians on Wikipedia
 
 ## Dataset
 
@@ -7,6 +7,16 @@ The dataset with additional information about it is available on the following a
 The data used for this project is located in the politician-data-wikipedia-edge-list.zip file, which contains: 
 * Edge list files - containing edges between politician pages on Wikipedia through time
 * Politician data - data about the politicians that can be found on Wikipedia
+
+## Dataset Augmentations
+
+### Gender
+
+As all the politicians from the original dataset (described above) do not have gender specified, gender inference was performed based on the method proposed in this paper ["Inferring Gender from Names on the Web: A Comparative Evaluation of Gender Detection Methods"](http://dl.acm.org/citation.cfm?doid=2872518.2889385) using the implementation provided in [this repository](https://github.com/gesiscss/image-gender-inference). More details can be found in the gender detection directory.
+
+### Page Views
+
+Todo...
 
 ## Scripts
 
