@@ -16,7 +16,7 @@ def get_files(path):
     complete = [f for f in listdir(mypath) if isfile(join(mypath, f))]
     return complete
 
-def filter_files(interval):
+def filter_files(files, interval):
     """ Returns filtered list of files 
         Input parameter: interval ("4m", "6m", "12m")
     """
@@ -55,7 +55,7 @@ if __name__ == "__main__":
         interval = sys.argv[3]
 
         files = get_files(path_copy)
-        files = filter_files(interval)
+        files = filter_files(files, interval)
         print(files)
         print("Number of files:",number_of_files(files))
         copy_files(files, path_copy,path_paste)
