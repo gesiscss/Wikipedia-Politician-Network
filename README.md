@@ -52,6 +52,22 @@ This script loads **networkx** graphs, using the **gt2nx** implementation transf
 python calculate_efficiency.py
 ```
 
+### download.py 
+
+This script concurently downloads [Wikipedia pagecount dumps](https://dumps.wikimedia.org/other/pagecounts-raw/) [qzip]. **file.csv** contains a list of urls for the files mentioned. The **path_save** refers to directory where files should be downloaded. 
+
+```{r, engine='bash', count_lines}
+python multithread_download.py [file.csv] [path_save]
+```
+
+### multithread_download.py 
+
+This script sequentialy downloads [Wikipedia pagecount dumps](https://dumps.wikimedia.org/other/pagecounts-raw/) [qzip]. **file.csv** contains a list of urls for the files mentioned. The **path_save** refers to directory where files should be downloaded. 
+
+```{r, engine='bash', count_lines}
+python multithread_download.py [file.csv] [path_save]
+```
+
 ## Notebooks
 
 ### hist_plot.py (python 2.7.x)
