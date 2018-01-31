@@ -7,6 +7,7 @@ import wget
 import time
 import random
 import cProfile
+from datetime import datetime
 
 # global
 next_run = []
@@ -52,10 +53,14 @@ def scrape(urls, save_path):
     """ Tries to download files from the urls list and starts a thread for each of them
     """
     for count, url in enumerate(urls):
-        time.sleep(random.uniform(1.0, 2.0))
+        time.sleep(random.uniform(1.0, 3.0))
         if count % 10 == 0 and count != 0:
-            time.sleep(random.uniform(2.0, 8.0))
+            time.sleep(random.uniform(5.0, 10.0))
         print(url)
+        if count % 50 == 0 and count !=0:
+            print("------------------------------------------------------------")
+            print("{} - {}".format(count, str(datetime.now())))
+            print("------------------------------------------------------------")
         createNewDownloadThread(url, save_path)
 
 def main():
