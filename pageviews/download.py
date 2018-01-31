@@ -35,16 +35,16 @@ form_url(2008,'01')
 
 # url = host_path+str(year[0])+"/"+str(year[0])+"-"+str(month[0])
 
-def get_files(url):
-    """ Returns all files from given url as a list
-    """
-    resp = requests.get(url)
-    soup = BeautifulSoup(resp.content,"html.parser")
-    list_elements = soup.find_all("li")
-    size = [li.text.split(" ")[-1].replace("M","") for li in list_elements]
-#     print(size)
-    list_elements = [li.a.get("href") for li in list_elements]
-    return list_elements, size
+# def get_files(url):
+#     """ Returns all files from given url as a list
+#     """
+#     resp = requests.get(url)
+#     soup = BeautifulSoup(resp.content,"html.parser")
+#     list_elements = soup.find_all("li")
+#     size = [li.text.split(" ")[-1].replace("M","") for li in list_elements]
+# #     print(size)
+#     list_elements = [li.a.get("href") for li in list_elements]
+#     return list_elements, size
 
 # file_name = "pagecounts-20140701-040000.gz"
 # save_path = "files/"
@@ -134,9 +134,9 @@ if __name__ == '__main__':
     #download one by one
 
     for count , file in enumerate(files):
-        if count % 5 == 0:
+        # if count % 5 == 0:
                 # print("sleeping start")
-                time.sleep(random.uniform(1.0, 3.0))
+                # time.sleep(random.uniform(1.0, 3.0))
                 # print("wake up")
         if count % 25 == 0:
             print("Progress report: {} / {}".format(count, len(files)))
