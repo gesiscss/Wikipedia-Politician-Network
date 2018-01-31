@@ -11,21 +11,33 @@ import cProfile
 # global
 next_run = []
 
-def download(url, save_path):
+def download(url, save_path, lib="requests"):
     """ Downloads file to specified path, if server returns status codes other than 200 url is saved
     """
+    # the speed diference is insignificant between 'requests' and 'wget'
     global next_run
+
     f_name = url.split("/")[-1]
     save = save_path+"/"+f_name
-    r = requests.get(url, stream=True)
-    if r.status_code != 200:
-        next_run.append(url)
-        print("Added {} to NEW ROUND (bach size: {})".format(f_name, len(next_run)))
+
+    if lib == "requests":
         
-    with open(save, 'wb') as f:
-        for chunk in r.iter_content(1024):
-            if chunk:
-                f.write(chunk)
+        r = requests.get(url, stream=True)
+        if r.status_code != 200:
+            next_run.append(url)
+            print("Added {} to NEW ROUND (bach size: {})".format(f_name, len(next_run)))
+            
+        with open(save, 'wb') as f:
+            for chunk in r.iter_content(1024):
+                if chunk:
+                    f.write(chunk)
+
+    if lib == "wget":
+        try:
+            wget.download(url, save)
+        except:
+            next_run.append(url)
+            print("Added {} to NEW ROUND (bach size: {})".format(f_name, len(next_run)))
     # wget.download(url, save)
 
 def createNewDownloadThread(url, save_path):
@@ -39,7 +51,7 @@ def createNewDownloadThread(url, save_path):
 def scrape(urls, save_path):
     """ Tries to download files from the urls list and starts a thread for each of them
     """
-    for count, url in enumerate(urls):
+    for count, url in enumerate(urls[:20]):
         time.sleep(random.uniform(1.0, 2.0))
         if count % 10 == 0 and count != 0:
             time.sleep(random.uniform(2.0, 8.0))

@@ -51,7 +51,7 @@ def createNewDownloadThread(url, save_path):
 def scrape(urls, save_path):
     """ Tries to download files from the urls list and starts a thread for each of them
     """
-    for count, url in enumerate(urls[:20]):
+    for count, url in enumerate(urls):
         time.sleep(random.uniform(1.0, 2.0))
         if count % 10 == 0 and count != 0:
             time.sleep(random.uniform(2.0, 8.0))
@@ -73,9 +73,9 @@ def main():
     counter = 1
     while len(next_run) != 0:
         time.sleep(10)
-        print("--------------------------------- ---------- ----------------------------------")
-        print("--------------------------------- NEW RUN {} ----------------------------------".format(counter))
-        print("--------------------------------- ---------- ----------------------------------")
+        print("--------------------------------- ------------- ----------------------------------")
+        print("--------------------------------- NEW RUN    {} ----------------------------------".format(counter))
+        print("--------------------------------- BATCH SIZE {} ----------------------------------".format(len(next_run)))
 
         urls = next_run
         next_run = []
@@ -84,5 +84,5 @@ def main():
 
 
 if __name__ == '__main__':
-    cProfile.run('main()')
+    cProfile.run('main()') 
     # main()
