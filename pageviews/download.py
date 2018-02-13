@@ -17,6 +17,7 @@ import sys
 from tqdm import tqdm
 import time
 import random
+import cProfile
 
 host_path = "https://dumps.wikimedia.org/other/pagecounts-raw/"
 
@@ -33,21 +34,6 @@ def form_url(year, month,file_name=""):
     return host_path+str(year)+"/"+str(year)+"-"+str(month)+"/"+file_name
 form_url(2008,'01')
 
-# url = host_path+str(year[0])+"/"+str(year[0])+"-"+str(month[0])
-
-# def get_files(url):
-#     """ Returns all files from given url as a list
-#     """
-#     resp = requests.get(url)
-#     soup = BeautifulSoup(resp.content,"html.parser")
-#     list_elements = soup.find_all("li")
-#     size = [li.text.split(" ")[-1].replace("M","") for li in list_elements]
-# #     print(size)
-#     list_elements = [li.a.get("href") for li in list_elements]
-#     return list_elements, size
-
-# file_name = "pagecounts-20140701-040000.gz"
-# save_path = "files/"
 
 def download(file_name, save_path, lib="wget"):
     """ Downloads .gz file using the specified library and saves it on the specified path
@@ -77,50 +63,7 @@ def download(file_name, save_path, lib="wget"):
         for line in smart_open.smart_open(url):
             handle.write(line)
 
-# ## Requests
-
-# In[24]:
-
-# cProfile.run('download(file_name, save_path, "requests")')
-
-
-# # Wget
-
-# In[25]:
-
-# cProfile.run('download(file_name, save_path)')
-
-
-# ## Urllib
-
-# In[26]:
-
-# cProfile.run('download(file_name, save_path, "urllib")')
-
-
-# # Smart Open
-
-# In[27]:
-
-# cProfile.run('download(file_name, save_path, "smart_open")')
-
-
-# # Total number of files to download
-
-# In[28]:
-
-# num_files = 0
-# for year in years:
-#     file_name = str(year)+".csv"
-#     df = pd.read_csv(file_name)
-#     num_files = num_files + len(df)
-# print("Number of files to be downloaded {}".format(num_files))
-
-
-# In[ ]:
-
-if __name__ == '__main__':
-    
+def main():
     year_file = sys.argv[1]
     save_path = sys.argv[2]
 
@@ -141,5 +84,10 @@ if __name__ == '__main__':
         if count % 25 == 0:
             print("Progress report: {} / {}".format(count, len(files)))
         download(file, save_path)
+
+
+if __name__ == '__main__':
+    
+    cProfile.run("main()")
 
 
