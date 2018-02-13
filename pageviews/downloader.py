@@ -6,6 +6,7 @@ import sys, time
 import pandas as pd
 import requests
 import cProfile
+import time
 def download(url, save_path, lib="requests"):
     global q
     """ Downloads file to specified path, if server returns status codes other than 200 url is saved
@@ -68,6 +69,7 @@ def start_threads(num_threads, save_path):
 
 def main():
     global q
+    start = time.time()
     year_file = sys.argv[1]
     save_path = sys.argv[2]
     num_threads = int(sys.argv[3])
@@ -77,12 +79,14 @@ def main():
 
     q = Queue()
 
-    for worker in urls[:20]:
+    for worker in urls:
         q.put(worker)
 
     start_threads(num_threads, save_path)
 
     q.join()
 
+    print("Time used: ", (time.time() - start)/3600)
+
 if __name__ == '__main__':
-    cProfile.run('main()')
+    main()
