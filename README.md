@@ -60,13 +60,14 @@ This script concurently downloads [Wikipedia pagecount dumps](https://dumps.wiki
 python multithread_download.py [file.csv] [path_save]
 ```
 
-### multithread_download.py 
+### downloader.py 
 
 This script sequentialy downloads [Wikipedia pagecount dumps](https://dumps.wikimedia.org/other/pagecounts-raw/) [qzip]. **file.csv** contains a list of urls for the files mentioned. The **path_save** refers to directory where files should be downloaded. 
 
 ```{r, engine='bash', count_lines}
-python multithread_download.py [file.csv] [path_save]
+python multithread_download.py [file.csv] [path_save] [thread_number]
 ```
+**THE SERVER CAN CURRENTLY NOT TAKE MORE THAN 3 THREADS
 
 ## Notebooks
 
