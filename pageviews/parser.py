@@ -24,7 +24,7 @@ def get_files(path):
 def load_names_df(path):
     """ Loads pandas df with names from a csv file
     """
-    df = pd.read_csv(path)
+    df = pd.read_csv(path, encoding="utf-8")
     df = df.drop(["names_u"], axis=1)
     # print(df)
     df.columns = ["name"]
@@ -60,7 +60,7 @@ def threader(names_df, save_dir):
 def start_threads(num_threads, names_df, save_dir):
 
     for x in range(num_threads):
-        # time.sleep(0.05)
+        time.sleep(0.05)
         t = threading.Thread(target=threader, args=(names_df, save_dir,))
 
          # classifying as a daemon, so they will die when the main dies
@@ -78,7 +78,8 @@ def main():
     save_dir = sys.argv[3]
     num_threads = int(sys.argv[4])
 
-    df = load_names_df(names_file)  
+    df = load_names_df(names_file)
+    print(df.head())  
     # urls = list(df["url"].values)
     files = get_files(files_dir)
 
