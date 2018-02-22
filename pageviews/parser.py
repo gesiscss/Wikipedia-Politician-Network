@@ -34,14 +34,15 @@ def load_names_df(path):
 def parse(path_old, path_new, names_df):
     """ Reads file, eliminates unneeded data, filters for project "en" and sspecified names
     """
-    df = pd.read_csv(path_old, sep=" ")
-    df.columns = ["project", "name", "views", "size"]
-    df = df[df["project"] == "en"]
-    df = df.drop(["size","project"], axis=1)
-    df = df.merge(names_df, on=["name"])
-    path_new = path_new + path_old.split("/")[-1]
-    df.to_csv(path_new, sep=" ",compression="gzip", index=False, header=False)
-    print("{} > {}, DONE! ".format(path_old, path_new))
+    print(path_old)
+    # df = pd.read_csv(path_old, sep=" ")
+    # df.columns = ["project", "name", "views", "size"]
+    # df = df[df["project"] == "en"]
+    # df = df.drop(["size","project"], axis=1)
+    # df = df.merge(names_df, on=["name"])
+    # path_new = path_new + path_old.split("/")[-1]
+    # df.to_csv(path_new, sep=" ",compression="gzip", index=False, header=False)
+    # print("{} > {}, DONE! ".format(path_old, path_new))
 
 
 def threader(names_df, save_dir):
