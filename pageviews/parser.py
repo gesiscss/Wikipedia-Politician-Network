@@ -36,11 +36,12 @@ def parse(path_old, path_new, names_df):
     """
     global bad_files
     f_name = path_old.split("/")[-1]
-    # print(path_old)
+    # print(path_old) 
     try:
         df = pd.read_csv(path_old, sep=" ")
     except Exception as e:
-        bad_files.append(f_name)
+        df = pd.read_csv(path_old, sep=" ", encoding="latin_1")
+    else:
         return 
     df.columns = ["project", "name", "views", "size"]
     df = df[df["project"] == "en"]
