@@ -23,7 +23,7 @@ def get_files(path):
 
 def load_names_df(path):
     """ Loads pandas df with names from a csv file
-    """
+    """    
     df = pd.read_csv(path, encoding="utf-8")
     df = df.drop(["names_u"], axis=1)
     # print(df)
@@ -34,15 +34,21 @@ def load_names_df(path):
 def parse(path_old, path_new, names_df):
     """ Reads file, eliminates unneeded data, filters for project "en" and sspecified names
     """
+    global bad_files
+    f_name = path_old.split("/")[-1]
     print(path_old)
-    # df = pd.read_csv(path_old, sep=" ")
-    # df.columns = ["project", "name", "views", "size"]
-    # df = df[df["project"] == "en"]
-    # df = df.drop(["size","project"], axis=1)
-    # df = df.merge(names_df, on=["name"])
-    # path_new = path_new + path_old.split("/")[-1]
-    # df.to_csv(path_new, sep=" ",compression="gzip", index=False, header=False)
-    # print("{} > {}, DONE! ".format(path_old, path_new))
+    try:
+        df = pd.read_csv(path_old, sep=" ")
+    except Exception as e:
+        bad_files.append(f_name)
+        return 
+    df.columns = ["project", "name", "views", "size"]
+    df = df[df["project"] == "en"]
+    df = df.drop(["size","project"], axis=1)
+    df = df.merge(names_df, on=["name"])
+    path_new = path_new + f_name
+    df.to_csv(path_new, sep=" ",compression="gzip", index=False, header=False)
+    print("{} > {}, DONE! ".format(path_old, path_new))
 
 
 def threader(names_df, save_dir):
@@ -72,7 +78,8 @@ def start_threads(num_threads, names_df, save_dir):
 
 
 def main():
-    global q
+    global q, bad_files
+    bad_files = []
     start = time.time()
     names_file = sys.argv[1]
     files_dir = sys.argv[2]
@@ -94,6 +101,8 @@ def main():
     q.join()
 
     print("Time used: ", (time.time() - start)/3600)
+
+    pd.DataFrame(bad_files).to_csv("bad_"+names_file.split("/")[-1])
 
 if __name__ == '__main__':
     main()
