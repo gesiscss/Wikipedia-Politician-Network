@@ -36,7 +36,7 @@ def parse(path_old, path_new, names_df):
     """
     global bad_files
     f_name = path_old.split("/")[-1]
-    print(path_old)
+    # print(path_old)
     try:
         df = pd.read_csv(path_old, sep=" ")
     except Exception as e:
@@ -87,7 +87,7 @@ def main():
     num_threads = int(sys.argv[4])
 
     df = load_names_df(names_file)
-    print(df.head())  
+    # print(df.head())  
     # urls = list(df["url"].values)
     files = get_files(files_dir)
 
