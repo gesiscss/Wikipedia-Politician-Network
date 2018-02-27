@@ -93,7 +93,7 @@ def main():
 
     q = Queue()
 
-    for worker in files[:20]:
+    for worker in files[:100]:
         q.put(worker)
 
     start_threads(num_threads, df, save_dir)
