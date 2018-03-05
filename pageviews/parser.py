@@ -35,14 +35,21 @@ def parse(path_old, path_new, names_df):
     """ Reads file, eliminates unneeded data, filters for project "en" and sspecified names
     """
     global bad_files
+
+    # f_name = path_old.split("\\")[-1] #windows
     f_name = path_old.split("/")[-1]
-    # print(path_old) 
+    # print("PAth old: ", path_old) 
+    # print("PAth new: ", path_new)
+    # print(f_name) 
+
     try:
         df = pd.read_csv(path_old, sep=" ")
-    except Exception as e:
-        df = pd.read_csv(path_old, sep=" ", encoding="latin_1")
-    else:
-        return 
+    except:
+        try:
+            df = pd.read_csv(path_old, sep=" ", encoding="latin_1")
+        except:
+            print("SKIP")
+            return None
     df.columns = ["project", "name", "views", "size"]
     df = df[df["project"] == "en"]
     df = df.drop(["size","project"], axis=1)
@@ -79,8 +86,8 @@ def start_threads(num_threads, names_df, save_dir):
 
 
 def main():
-    global q, bad_files
-    bad_files = []
+    global q
+    # bad_files = []
     start = time.time()
     names_file = sys.argv[1]
     files_dir = sys.argv[2]
@@ -103,7 +110,7 @@ def main():
 
     print("Time used: ", (time.time() - start)/3600)
 
-    pd.DataFrame(bad_files).to_csv("bad_"+names_file.split("/")[-1])
+    # pd.DataFrame(bad_files).to_csv("bad_"+names_file.split("/")[-1])
 
 if __name__ == '__main__':
     main()
