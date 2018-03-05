@@ -11,6 +11,7 @@ from os.path import isfile, join
 import tqdm
 from urllib.parse import quote, unquote
 import sys, time
+import gc
 
 def get_files(path):
     """ Returns a list of files in a directory
@@ -61,7 +62,7 @@ def save_aggregation(agr, path):
         "views":views,
     })
     print("File saved at {}".format(path))
-    df.to_csv(path, encoding="utf-8")
+    df.to_csv(path, encoding="utf-8", index=False)
 
 # save_aggregation(agr, "test.csv")
 
@@ -70,14 +71,19 @@ def main():
     file_path = sys.argv[1]
     output_path = sys.argv[2]
 
+    start = time.time()
     files = get_files(file_path)
     print("Loading files.. \n")
     lst = load_files_to_lst(files)
     print("Concatinating dataframes.. \n")
     df = concate_to_df(lst)
+    lst = None
+    gc.collect()
     print("Aggregating.. \n")
     agr = df.groupby(by="name")["views"].sum()
     save_aggregation(agr, output_path)
+    print("Time used: ", (time.time() - start)/60)
+
 
 if __name__ == '__main__':
     main()
