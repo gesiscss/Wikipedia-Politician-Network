@@ -44,19 +44,32 @@ def parse(path_old, path_new, names_df):
 
     try:
         df = pd.read_csv(path_old, sep=" ")
+        df.columns = ["project", "name", "views", "size"]
+        df = df[df["project"] == "en"]
+        df = df.drop(["size","project"], axis=1)
+        df = df.merge(names_df, on=["name"])
+        path_new = path_new + f_name
+        df.to_csv(path_new, sep=" ",compression="gzip", index=False, header=False)
+        print("{} > {}, DONE! ".format(path_old, path_new))
     except:
         try:
             df = pd.read_csv(path_old, sep=" ", encoding="latin_1")
+            df.columns = ["project", "name", "views", "size"]
+            df = df[df["project"] == "en"]
+            df = df.drop(["size","project"], axis=1)
+            df = df.merge(names_df, on=["name"])
+            path_new = path_new + f_name
+            df.to_csv(path_new, sep=" ",compression="gzip", index=False, header=False)
+            print("{} > {}, DONE! ".format(path_old, path_new))
         except:
             print("SKIP")
-            return None
-    df.columns = ["project", "name", "views", "size"]
-    df = df[df["project"] == "en"]
-    df = df.drop(["size","project"], axis=1)
-    df = df.merge(names_df, on=["name"])
-    path_new = path_new + f_name
-    df.to_csv(path_new, sep=" ",compression="gzip", index=False, header=False)
-    print("{} > {}, DONE! ".format(path_old, path_new))
+    # df.columns = ["project", "name", "views", "size"]
+    # df = df[df["project"] == "en"]
+    # df = df.drop(["size","project"], axis=1)
+    # df = df.merge(names_df, on=["name"])
+    # path_new = path_new + f_name
+    # df.to_csv(path_new, sep=" ",compression="gzip", index=False, header=False)
+    # print("{} > {}, DONE! ".format(path_old, path_new))
 
 
 def threader(names_df, save_dir):
