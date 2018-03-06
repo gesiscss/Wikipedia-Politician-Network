@@ -30,7 +30,11 @@ def load_files_to_lst(file_paths):
     """
     df_lst = []
     for file in tqdm.tqdm(file_paths):
-        df = pd.read_csv(file, sep=" ")
+        try:
+            df = pd.read_csv(file, sep=" ")
+        except:
+            print("Skiped: ", file)
+            pass
         df.columns = ['name', 'views']
 #         print(df.head(2))
         df_lst.append(df)
