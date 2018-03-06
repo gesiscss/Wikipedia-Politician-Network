@@ -79,7 +79,7 @@ def main():
     files = get_files(file_path)
     print("Loading files.. \n")
     lst = load_files_to_lst(files)
-    print("Concatinating dataframes.. \n")
+    print("Concatinating {} dataframes.. \n".format(len(lst)))
     df = concate_to_df(lst)
     lst = None
     gc.collect()
