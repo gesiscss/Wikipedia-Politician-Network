@@ -18,7 +18,7 @@ filter_file = sys.argv[3]
 
 files_df = pd.read_csv(filter_file)
 files = files_df['file_name'].values
-fltr.copy_files(files, path_copy, path_paste+"/all")
+fltr.copy_files(files, path_copy, path_paste)
 
 c_names = {
     'us':"american",
