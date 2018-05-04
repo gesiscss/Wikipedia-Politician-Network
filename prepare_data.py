@@ -10,6 +10,7 @@ from matplotlib import pyplot as plt
 from itertools import groupby
 from collections import Counter
 import seaborn as sns
+import sys
 # get_ipython().magic('matplotlib inline')
 
 
@@ -17,12 +18,11 @@ import seaborn as sns
 # 
 # Complete dataset
 #
-all_columns = ["rakija"]
-#
+remove_from_model = []
 # Model dataset
 #
 #
-model_colums = ["rakija"]
+remove_from_all = [""]
 
 
 def drop_columns(df, lst):
@@ -224,6 +224,50 @@ def filter_by_value(df, column, value):
     df = df.drop("filter_cols", axis=1)
     return df
 
+def clean_lst(lst):
+    return [x.strip(" ") for x in lst]
+
+
+def to_binary(lst,value):
+#     lst = [x.strip(" ") for x in lst]
+    if value in lst:
+        return 1
+    else:
+        return 0
+def other_to_bin(x, lst):
+    sumed = 0
+    for i in lst:
+        sumed = sumed + x[i]
+    if sumed > 0:
+        return 0
+    else:
+        return 1 
+    
+def add_binary_column(df, column, column_new, value):
+    """ Adds 1 or 0 to a new column, therefore biarising the  
+    """
+    df[column_new] = df[column].apply(lambda x: to_binary(x, value))
+
+    return df
+
+def get_from_lst(lst,value):
+    """ Returns value if in list, returns "none" if not
+    """
+#     print(lst)
+    lst = [x.strip(" ") for x in lst]
+    if value in lst:
+#         print(value)
+        return value
+    else:
+        return "none"
+    
+def filter_by_value(df, column, value):
+    """ Returns dataframe after filtering colums per value 
+    """
+    df["filter_cols"] = df[column].apply(lambda x: get_from_lst(x, value))
+    df = df[df["filter_cols"] == value]
+    df = df.drop("filter_cols", axis=1)
+    return df
 
 # numerics = ['int16', 'int32', 'int64', 'float16', 'float32', 'float64']
 
@@ -234,14 +278,17 @@ def filter_by_value(df, column, value):
 # df = drop_columns(df, ['#DBpURL', 'ID', 'WikiURL', 'birthDate', 'deathDate',"name_u"])
 
 def main():
-    global model_colums
-    global all_columns
+    global remove_from_model
+    global remove_from_all
+
+
 
     # Load the data
     df = pd.read_pickle("data/connected_sources/2016")
 
     # print("cevap")
     # print(model_colums)
+    df["party"] = df["party"].apply(lambda x: clean_lst(x))
     df = add_age(df)
     df = add_alive_status(df)
     df = add_distance(df)
@@ -250,7 +297,47 @@ def main():
     df = add_lst_size(df,"party")
     df = add_lst_size(df,"occupation")
 
+    # Dummyfy nationality column
+    df = add_binary_column(df,"nationality", "us", "american").head()
+    df = add_binary_column(df,"nationality", "de", "german").head()
+    df = add_binary_column(df,"nationality", "fr", "french").head()
+    df = add_binary_column(df,"nationality", "in", "indian").head()
+    df = add_binary_column(df,"nationality", "cd", "canadian").head()
+    df = add_binary_column(df,"nationality", "no", "norwegian").head()
+    df = add_binary_column(df,"nationality", "ru", "russian").head()
+    df = add_binary_column(df,"nationality", "gb", "british").head()
+    df["other_n"] = df.apply(lambda x: other_to_bin(x, ["us","de","fr","in","cd","no","ru","gb"]), axis=1)
+
+    # Dummyfy party column
+    df = add_binary_column(df,"party", "dem", "democratic party (united states)").head()
+    df = add_binary_column(df,"party", "rep", "republican party (united states").head()
+    df = add_binary_column(df,"party", "indi", "independent politician").head()
+    df = add_binary_column(df,"party", "inc", "indian national congress").head()
+    df = add_binary_column(df,"party", "cpc", "communist party of china").head()
+    df = add_binary_column(df,"party", "bjp", "bharatiya janata party").head()
+    df["other_p"] = df.apply(lambda x: other_to_bin(x, ["dem","rep","indi","inc","cpc","bjp"]), axis=1)
+
+     # Dummyfy occupation column
+    df = add_binary_column(df,"occupation", "wrt", "writer").head()
+    df = add_binary_column(df,"occupation", "sci", "scientist").head()
+    df = add_binary_column(df,"occupation", "jor", "journalist").head()
+    df = add_binary_column(df,"occupation", "eco", "economist").head()
+    df = add_binary_column(df,"occupation", "hst", "historian").head()
+    df = add_binary_column(df,"occupation", "spo", "sportsperson").head()
+    df = add_binary_column(df,"occupation", "lyr", "lawyer").head()
+    df = add_binary_column(df,"occupation", "phs", "physician").head()
+    df = add_binary_column(df,"occupation", "act", "actor").head()
+    df = add_binary_column(df,"occupation", "ply", "player").head()
+    df["other_o"] = df.apply(lambda x: other_to_bin(x, ["dem","rep","indi","inc","cpc","bjp"]), axis=1)
+
+    df['year_interval'] = pd.cut( df['entered'], [2000,2005,2010,2016], labels=[1,2,3])
+
     print(df.columns)
+
+    #todo: 
+    # save dataset for future use 
+    # save model datasets 
+    # save numerical? 
 
 if __name__ == '__main__':
     main()
