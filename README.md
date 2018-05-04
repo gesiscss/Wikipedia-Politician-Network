@@ -54,7 +54,7 @@ python calculate_efficiency.py
 
 ### download.py 
 
-This script concurently downloads [Wikipedia pagecount dumps](https://dumps.wikimedia.org/other/pagecounts-raw/) [qzip]. **file.csv** contains a list of urls for the files mentioned. The **path_save** refers to directory where files should be downloaded. 
+This script sequentialy  downloads [Wikipedia pagecount dumps](https://dumps.wikimedia.org/other/pagecounts-raw/) [qzip]. **file.csv** contains a list of urls for the files mentioned. The **path_save** refers to directory where files should be downloaded. 
 
 ```{r, engine='bash', count_lines}
 python download.py [file.csv] [path_save]
@@ -62,7 +62,7 @@ python download.py [file.csv] [path_save]
 
 ### downloader.py 
 
-This script sequentialy downloads [Wikipedia pagecount dumps](https://dumps.wikimedia.org/other/pagecounts-raw/) [qzip]. **file.csv** contains a list of urls for the files mentioned. The **path_save** refers to directory where files should be downloaded. 
+This script concurently downloads [Wikipedia pagecount dumps](https://dumps.wikimedia.org/other/pagecounts-raw/) [qzip]. **file.csv** contains a list of urls for the files mentioned. The **path_save** refers to directory where files should be downloaded. 
 
 ```{r, engine='bash', count_lines}
 python downloader.py [file.csv] [path_save] [thread_number]
@@ -76,7 +76,9 @@ python parser.py [names_file] [files_dir] [save_dir] [num_threads]
 ```
 
 ### groupby.py
+
 Loads files from **file_dir** as pandas dataframes, concatinates them, performs aggregation and saves them as csv on **save_path**. 
+
 ```{r, engine='bash', count_lines}
 python groupby.py [file_dir] [save_path] 
 ```
