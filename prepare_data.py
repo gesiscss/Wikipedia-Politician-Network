@@ -1,7 +1,6 @@
 
 # coding: utf-8
 
-# In[1]:
 
 import pandas as pd
 import numpy as np
@@ -11,18 +10,9 @@ from itertools import groupby
 from collections import Counter
 import seaborn as sns
 import sys
+from os import listdir, sep
+from os.path import isfile, join 
 # get_ipython().magic('matplotlib inline')
-
-
-# Global lists 
-# 
-# Complete dataset
-#
-remove_from_model = []
-# Model dataset
-#
-#
-remove_from_all = [""]
 
 
 def drop_columns(df, lst):
@@ -274,20 +264,8 @@ def filter_by_value(df, column, value):
 # num_df = df.select_dtypes(include=numerics)
 # num_df.columns
 
-
-# df = drop_columns(df, ['#DBpURL', 'ID', 'WikiURL', 'birthDate', 'deathDate',"name_u"])
-
-def main():
-    global remove_from_model
-    global remove_from_all
-
-
-
-    # Load the data
-    df = pd.read_pickle("data/connected_sources/2016")
-
-    # print("cevap")
-    # print(model_colums)
+def extract_columns(df):
+    # print("1",df.shape)
     df["party"] = df["party"].apply(lambda x: clean_lst(x))
     df = add_age(df)
     df = add_alive_status(df)
@@ -296,48 +274,118 @@ def main():
     df = add_lst_size(df,"nationality")
     df = add_lst_size(df,"party")
     df = add_lst_size(df,"occupation")
-
+    # print("2",df.shape)
     # Dummyfy nationality column
-    df = add_binary_column(df,"nationality", "us", "american").head()
-    df = add_binary_column(df,"nationality", "de", "german").head()
-    df = add_binary_column(df,"nationality", "fr", "french").head()
-    df = add_binary_column(df,"nationality", "in", "indian").head()
-    df = add_binary_column(df,"nationality", "cd", "canadian").head()
-    df = add_binary_column(df,"nationality", "no", "norwegian").head()
-    df = add_binary_column(df,"nationality", "ru", "russian").head()
-    df = add_binary_column(df,"nationality", "gb", "british").head()
+    df = add_binary_column(df,"nationality", "us", "american")
+    df = add_binary_column(df,"nationality", "de", "german")
+    df = add_binary_column(df,"nationality", "fr", "french")
+    df = add_binary_column(df,"nationality", "in", "indian")
+    df = add_binary_column(df,"nationality", "cd", "canadian")
+    df = add_binary_column(df,"nationality", "no", "norwegian")
+    df = add_binary_column(df,"nationality", "ru", "russian")
+    df = add_binary_column(df,"nationality", "gb", "british")
     df["other_n"] = df.apply(lambda x: other_to_bin(x, ["us","de","fr","in","cd","no","ru","gb"]), axis=1)
-
+    # print("3",df.shape)
     # Dummyfy party column
-    df = add_binary_column(df,"party", "dem", "democratic party (united states)").head()
-    df = add_binary_column(df,"party", "rep", "republican party (united states").head()
-    df = add_binary_column(df,"party", "indi", "independent politician").head()
-    df = add_binary_column(df,"party", "inc", "indian national congress").head()
-    df = add_binary_column(df,"party", "cpc", "communist party of china").head()
-    df = add_binary_column(df,"party", "bjp", "bharatiya janata party").head()
+    df = add_binary_column(df,"party", "dem", "democratic party (united states)")
+    df = add_binary_column(df,"party", "rep", "republican party (united states")
+    df = add_binary_column(df,"party", "indi", "independent politician")
+    df = add_binary_column(df,"party", "inc", "indian national congress")
+    df = add_binary_column(df,"party", "cpc", "communist party of china")
+    df = add_binary_column(df,"party", "bjp", "bharatiya janata party")
     df["other_p"] = df.apply(lambda x: other_to_bin(x, ["dem","rep","indi","inc","cpc","bjp"]), axis=1)
-
+    # print("4",df.shape)
      # Dummyfy occupation column
-    df = add_binary_column(df,"occupation", "wrt", "writer").head()
-    df = add_binary_column(df,"occupation", "sci", "scientist").head()
-    df = add_binary_column(df,"occupation", "jor", "journalist").head()
-    df = add_binary_column(df,"occupation", "eco", "economist").head()
-    df = add_binary_column(df,"occupation", "hst", "historian").head()
-    df = add_binary_column(df,"occupation", "spo", "sportsperson").head()
-    df = add_binary_column(df,"occupation", "lyr", "lawyer").head()
-    df = add_binary_column(df,"occupation", "phs", "physician").head()
-    df = add_binary_column(df,"occupation", "act", "actor").head()
-    df = add_binary_column(df,"occupation", "ply", "player").head()
+    df = add_binary_column(df,"occupation", "wrt", "writer")
+    df = add_binary_column(df,"occupation", "sci", "scientist")
+    df = add_binary_column(df,"occupation", "jor", "journalist")
+    df = add_binary_column(df,"occupation", "eco", "economist")
+    df = add_binary_column(df,"occupation", "hst", "historian")
+    df = add_binary_column(df,"occupation", "spo", "sportsperson")
+    df = add_binary_column(df,"occupation", "lyr", "lawyer")
+    df = add_binary_column(df,"occupation", "phs", "physician")
+    df = add_binary_column(df,"occupation", "act", "actor")
+    df = add_binary_column(df,"occupation", "ply", "player")
     df["other_o"] = df.apply(lambda x: other_to_bin(x, ["dem","rep","indi","inc","cpc","bjp"]), axis=1)
-
+    # print(df.shape)
     df['year_interval'] = pd.cut( df['entered'], [2000,2005,2010,2016], labels=[1,2,3])
+    # print(df.shape)
+    return df 
 
-    print(df.columns)
+def get_files(path):
+    """ Returns a list of files in a directory
+        Input parameter: path to directory
+    """
+    mypath = path
+    complete = [join(mypath, f) for f in listdir(mypath) if not join(mypath, f).endswith(".csv")]
+    print(complete)
+    return complete
 
-    #todo: 
-    # save dataset for future use 
-    # save model datasets 
-    # save numerical? 
+def save_file(df, path):
+    """ Saves pickled file on the specified path
+    """
+    df.to_pickle(path)
+# df = drop_columns(df, ['#DBpURL', 'ID', 'WikiURL', 'birthDate', 'deathDate',"name_u"])
+
+def main():
+    global remove_from_model
+    global remove_from_model_2
+    global remove_from_base
+
+    files_path = sys.argv[1]
+    print(files_path)
+    path_save = sys.argv[2]
+    print(path_save)
+    
+    # load the files 
+    files = get_files(files_path)
+    # df = pd.read_pickle("data/connected_sources/2016")
+    for file in files:
+
+        file_name = file.split("/")[-1]
+        print("Year:", file_name)
+        # load the data 
+        df = pd.read_pickle(file)
+
+        df = extract_columns(df)
+
+        base = drop_columns(df, remove_from_base)
+        print("BASE DF: ",base.shape)
+        save_file(df, join(join(path_save,"base"),file_name))
+
+        model = drop_columns(df, remove_from_model)
+        print("MODEL LARGE DF: ",model.shape)
+        save_file(df, join(join(path_save,"model_large"),file_name))
+
+        model2 = drop_columns(df, remove_from_model_2)
+        print("MODEL DF: ",model2.shape)
+        save_file(df, join(join(path_save,"model"),file_name))
+
+        # print(base.shape)
+
+
+
+
+# Global lists 
+
+# After removing these columns, a BASE DATAFRAME WILL BE LEFT
+remove_from_base = ['us', 'de', 'fr', 'in', 'cd', 'no', 'ru', 'gb',
+       'other_n', 'dem', 'rep', 'indi', 'inc', 'cpc', 'bjp', 'other_p', 'wrt',
+       'sci', 'jor', 'eco', 'hst', 'spo', 'lyr', 'phs', 'act', 'ply',
+       'other_o', 'year_interval','age', 'is_alive', 'distance_birth',
+       'distance_death', 'distance_delta', 'nationality_num', 'party_num',
+       'occupation_num','first_name','full_name']
+
+# After removing these columns, a  MODEL DATAFRAME WILL BE LEFT
+remove_from_model = ['#DBpURL', 'ID', 'WikiURL', 'birthDate', 'deathDate', 'first_name',
+       'full_name', 'name', 'nationality', 'occupation', 'party','name_u']
+
+# After removing these columns, a MODEL 2 DATAFRAME WILL BE LEFT
+remove_from_model_2 = ['#DBpURL', 'ID', 'WikiURL', 'birthDate', 'deathDate', 'first_name',
+        'full_name', 'name', 'nationality', 'occupation', 'party','name_u', 
+        'us', 'de', 'fr', 'in', 'cd', 'no', 'ru', 'gb','other_n', 'dem', 'rep',
+        'indi', 'inc', 'cpc', 'bjp', 'other_p', 'wrt', 'sci', 'jor', 'eco',
+        'hst', 'spo', 'lyr', 'phs', 'act', 'ply','other_o',]
 
 if __name__ == '__main__':
     main()
