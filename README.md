@@ -83,6 +83,14 @@ Loads files from **file_dir** as pandas dataframes, concatinates them, performs 
 python groupby.py [file_dir] [save_path] 
 ```
 
+### prepare_data.py
+
+Loads files from **file_dir** as pandas dataframes, creates new columns, creates 3 dataframes, base dataset, model dataset and large model dataset at **save_path**. 
+
+```{r, engine='bash', count_lines}
+python prepare_data.py [file_dir] [save_path] 
+```
+
 ## Notebooks
 
 ### hist_plot.py (python 2.7.x)
