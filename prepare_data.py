@@ -375,14 +375,14 @@ remove_from_base = ['us', 'de', 'fr', 'in', 'cd', 'no', 'ru', 'gb',
        'sci', 'jor', 'eco', 'hst', 'spo', 'lyr', 'phs', 'act', 'ply',
        'other_o', 'year_interval','age', 'is_alive', 'distance_birth',
        'distance_death', 'distance_delta', 'nationality_num', 'party_num',
-       'occupation_num','first_name','full_name',"name_q"]
+       'occupation_num','first_name','full_name',"name_q", "id"]
 
 # After removing these columns, a  MODEL DATAFRAME WILL BE LEFT
-remove_from_model = ['#DBpURL', 'ID', 'WikiURL', 'birthDate', 'deathDate', 'first_name',
+remove_from_model = ['#DBpURL', 'id', "ID", 'WikiURL', 'birthDate', 'deathDate', 'first_name',
        'full_name', 'name', 'nationality', 'occupation', 'party','name_u',"name_q"]
 
 # After removing these columns, a MODEL 2 DATAFRAME WILL BE LEFT
-remove_from_model_2 = ['#DBpURL', 'ID', 'WikiURL', 'birthDate', 'deathDate', 'first_name',
+remove_from_model_2 = ['#DBpURL', 'id',"ID", 'WikiURL', 'birthDate', 'deathDate', 'first_name',
         'full_name', 'name', 'nationality', 'occupation', 'party','name_u', 
         'us', 'de', 'fr', 'in', 'cd', 'no', 'ru', 'gb','other_n', 'dem', 'rep',
         'indi', 'inc', 'cpc', 'bjp', 'other_p', 'wrt', 'sci', 'jor', 'eco',
