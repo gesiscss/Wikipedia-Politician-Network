@@ -349,22 +349,23 @@ def main():
 
         df = extract_columns(df)
 
+        if "name_q" not in df.columns:
+            remove_from_base.remove("name_q")
+            remove_from_model.remove("name_q")
+            remove_from_model_2.remove("name_q")
         base = drop_columns(df, remove_from_base)
         print("BASE DF: ",base.shape)
-        save_file(df, join(join(path_save,"base"),file_name))
+        save_file(base, join(join(path_save,"base"),file_name))
 
         model = drop_columns(df, remove_from_model)
         print("MODEL LARGE DF: ",model.shape)
-        save_file(df, join(join(path_save,"model_large"),file_name))
+        save_file(model, join(join(path_save,"model_large"),file_name))
 
         model2 = drop_columns(df, remove_from_model_2)
         print("MODEL DF: ",model2.shape)
-        save_file(df, join(join(path_save,"model"),file_name))
+        save_file(model2, join(join(path_save,"model"),file_name))
 
         # print(base.shape)
-
-
-
 
 # Global lists 
 
@@ -374,18 +375,18 @@ remove_from_base = ['us', 'de', 'fr', 'in', 'cd', 'no', 'ru', 'gb',
        'sci', 'jor', 'eco', 'hst', 'spo', 'lyr', 'phs', 'act', 'ply',
        'other_o', 'year_interval','age', 'is_alive', 'distance_birth',
        'distance_death', 'distance_delta', 'nationality_num', 'party_num',
-       'occupation_num','first_name','full_name']
+       'occupation_num','first_name','full_name',"name_q"]
 
 # After removing these columns, a  MODEL DATAFRAME WILL BE LEFT
 remove_from_model = ['#DBpURL', 'ID', 'WikiURL', 'birthDate', 'deathDate', 'first_name',
-       'full_name', 'name', 'nationality', 'occupation', 'party','name_u']
+       'full_name', 'name', 'nationality', 'occupation', 'party','name_u',"name_q"]
 
 # After removing these columns, a MODEL 2 DATAFRAME WILL BE LEFT
 remove_from_model_2 = ['#DBpURL', 'ID', 'WikiURL', 'birthDate', 'deathDate', 'first_name',
         'full_name', 'name', 'nationality', 'occupation', 'party','name_u', 
         'us', 'de', 'fr', 'in', 'cd', 'no', 'ru', 'gb','other_n', 'dem', 'rep',
         'indi', 'inc', 'cpc', 'bjp', 'other_p', 'wrt', 'sci', 'jor', 'eco',
-        'hst', 'spo', 'lyr', 'phs', 'act', 'ply','other_o',]
+        'hst', 'spo', 'lyr', 'phs', 'act', 'ply','other_o',"name_q"]
 
 if __name__ == '__main__':
     main()
