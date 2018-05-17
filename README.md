@@ -16,7 +16,7 @@ As all the politicians from the original dataset (described above) do not have g
 
 ### Page Views
 
-Todo...
+Pageviews are collected for different time periods. As the [API](https://wikitech.wikimedia.org/wiki/Analytics/AQS/Pageviews#The_API) provides data post to mid 2015, annual pageviews for 2016 are fetched from it. However, annual pageview data was needed for previous years. [Dumps](https://dumps.wikimedia.org/other/pagecounts-raw/) are available for years: 2014,2013,2012,2011,2010, 2009 and 2008, and they were downloaded (for each hour of each day), parsed (for politicians only), and grouped by using [this code](https://github.com/gesiscss/wiki-download-parse-page-views).  
 
 ## Scripts
 
@@ -91,6 +91,14 @@ Loads files from **file_dir** as pandas dataframes, creates new columns, creates
 python prepare_data.py [file_dir] [save_path] 
 ```
 
+### prepare_data_country.py
+
+Loads files from **file_dir** as pandas dataframes, creates new columns, creates 3 dataframes, base dataset, model dataset and large model dataset at **save_path**, additionaly to the script above, it will filter by nationality {french, german,american.. }. 
+
+```{r, engine='bash', count_lines}
+python prepare_data.py [file_dir] [save_path] [french] 
+```
+
 ## Notebooks
 
 ### hist_plot.py (python 2.7.x)
@@ -98,7 +106,7 @@ python prepare_data.py [file_dir] [save_path]
 Saves 6 figures with two sub figures each. In this particular case, contains degree distribution, k_core distribution and efficiency distribution for both genders. 
 ```{r, engine='bash', count_lines}
 python hist_plot.py
-```
+```c
 
 ### add_stats_to_network.ipynb 
 
