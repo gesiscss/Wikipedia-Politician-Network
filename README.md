@@ -99,14 +99,14 @@ Loads files from **file_dir** as pandas dataframes, creates new columns, creates
 python prepare_data.py [file_dir] [save_path] [french] 
 ```
 
-## Notebooks
-
 ### hist_plot.py (python 2.7.x)
 
 Saves 6 figures with two sub figures each. In this particular case, contains degree distribution, k_core distribution and efficiency distribution for both genders. 
+
 ```{r, engine='bash', count_lines}
 python hist_plot.py
-```c
+```
+## Notebooks
 
 ### add_stats_to_network.ipynb 
 
