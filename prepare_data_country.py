@@ -56,7 +56,8 @@ def extract_columns(df, nationality):
 	df = add_binary_column(df,"occupation", "phs", "physician")
 	df = add_binary_column(df,"occupation", "act", "actor")
 	df = add_binary_column(df,"occupation", "ply", "player")
-	df["other_o"] = df.apply(lambda x: other_to_bin(x, ["wrt","sci","jur","eco","hst","spo","lyr","phs","act","ply"]), axis=1)
+	occ_abr_lst = ["wrt","sci","jur","eco","hst","spo","lyr","phs","act","ply"]
+	df["other_o"] = df.apply(lambda x: other_to_bin(x, occ_abr_lst), axis=1)
 
 	# Dummyfy party column
 	lst = []
@@ -80,23 +81,8 @@ def extract_columns(df, nationality):
 		print(party)
 		df = add_binary_column(df,"party",party,party)
 	print(party_abr_lst)
-	df["other_o"] = df.apply(lambda x: other_to_bin(x, party_abr_lst), axis=1)
+	df["other_p"] = df.apply(lambda x: other_to_bin(x, party_abr_lst), axis=1)
 
-	# print("4",df.shape)
-	 # Dummyfy occupation column
-	occ_lst = return_most_frequent(df,5,"occupation")
-	
-	occ_abr_lst = []
-	for occ in occ_lst:
-		l = occ.split(" ")
-		p = ""
-		for i in l:
-			p += i[0]
-		party_abr_lst.append(p)
-		df = add_binary_column(df,"party",p,occ)
-
-
-	df["other_o"] = df.apply(lambda x: other_to_bin(x, occ_abr_lst), axis=1)
 	# print(df.shape)
 	df['year_interval'] = pd.cut( df['entered'], [2000,2005,2010,2016], labels=[1,2,3])
 	# print(df.shape)
