@@ -298,7 +298,7 @@ def extract_columns(df):
      # Dummyfy occupation column
     df = add_binary_column(df,"occupation", "wrt", "writer")
     df = add_binary_column(df,"occupation", "sci", "scientist")
-    df = add_binary_column(df,"occupation", "jor", "journalist")
+    df = add_binary_column(df,"occupation", "jur", "journalist")
     df = add_binary_column(df,"occupation", "eco", "economist")
     df = add_binary_column(df,"occupation", "hst", "historian")
     df = add_binary_column(df,"occupation", "spo", "sportsperson")
@@ -306,7 +306,7 @@ def extract_columns(df):
     df = add_binary_column(df,"occupation", "phs", "physician")
     df = add_binary_column(df,"occupation", "act", "actor")
     df = add_binary_column(df,"occupation", "ply", "player")
-    df["other_o"] = df.apply(lambda x: other_to_bin(x, ["dem","rep","indi","inc","cpc","bjp"]), axis=1)
+    df["other_o"] = df.apply(lambda x: other_to_bin(x, ["wrt","sci","jur","eco","hst","spo","lyr","phs","act","ply"]), axis=1)
     # print(df.shape)
     df['year_interval'] = pd.cut( df['entered'], [2000,2005,2010,2016], labels=[1,2,3])
     # print(df.shape)
@@ -372,7 +372,7 @@ def main():
 # After removing these columns, a BASE DATAFRAME WILL BE LEFT
 remove_from_base = ['us', 'de', 'fr', 'in', 'cd', 'no', 'ru', 'gb',
        'other_n', 'dem', 'rep', 'indi', 'inc', 'cpc', 'bjp', 'other_p', 'wrt',
-       'sci', 'jor', 'eco', 'hst', 'spo', 'lyr', 'phs', 'act', 'ply',
+       'sci', 'jur', 'eco', 'hst', 'spo', 'lyr', 'phs', 'act', 'ply',
        'other_o', 'year_interval','age', 'is_alive', 'distance_birth',
        'distance_death', 'distance_delta', 'nationality_num', 'party_num',
        'occupation_num','first_name','full_name',"name_q", "id"]

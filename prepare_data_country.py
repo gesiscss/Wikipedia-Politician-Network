@@ -45,28 +45,40 @@ def extract_columns(df, nationality):
 	df = add_lst_size(df,"party")
 	df = add_lst_size(df,"occupation")
 
+	# Dummyfy occupation column
+	df = add_binary_column(df,"occupation", "wrt", "writer")
+	df = add_binary_column(df,"occupation", "sci", "scientist")
+	df = add_binary_column(df,"occupation", "jur", "journalist")
+	df = add_binary_column(df,"occupation", "eco", "economist")
+	df = add_binary_column(df,"occupation", "hst", "historian")
+	df = add_binary_column(df,"occupation", "spo", "sportsperson")
+	df = add_binary_column(df,"occupation", "lyr", "lawyer")
+	df = add_binary_column(df,"occupation", "phs", "physician")
+	df = add_binary_column(df,"occupation", "act", "actor")
+	df = add_binary_column(df,"occupation", "ply", "player")
+	df["other_o"] = df.apply(lambda x: other_to_bin(x, ["wrt","sci","jur","eco","hst","spo","lyr","phs","act","ply"]), axis=1)
+
 	# Dummyfy party column
 	lst = []
 	if nationality == "french":
-		lst = ["union for a popular movement", "socialist party (france)","the republicans (france)","radical party (france)","rally for the republic"]
+		lst = ["union for a popular movement", "socialist party (france)","the republicans (france)"]
 	if nationality == "british":
-		lst = ["labour party (uk)","conservative party (uk)","ulster unionist party", "democratic unionist party"]
+		lst = ["labour party (uk)","conservative party (uk)","ulster unionist party"]
 	if nationality == "russian":
-		lst = ["communist party of the soviet union","united russia"]
+		lst = ["communist party of the soviet union","united russia","independent politician"]
 	if nationality == "german":
-		lst = ["social democratic party of germany","christian democratic union of germany","nazi party","socialist unity party of germany"]
+		lst = ["social democratic party of germany","christian democratic union of germany","nazi party"]
 	if nationality == "american":
-		lst = ["democratic party (united states)","republican party (united states)"]
+		lst = ["democratic party (united states)","republican party (united states)","independent politician"]
 
 	party_abr_lst = []
+	i = 0
 	for party in lst:
-		l = party.split(" ")
-		p = ""
-		for i in l:
-			p += i[0]
-		party_abr_lst.append(p)
+		i = i+1
+		party = "party"+str(i)
+		party_abr_lst.append(party)
 		print(party)
-		df = add_binary_column(df,"party",p,party)
+		df = add_binary_column(df,"party",party,party)
 	print(party_abr_lst)
 	df["other_o"] = df.apply(lambda x: other_to_bin(x, party_abr_lst), axis=1)
 
@@ -107,8 +119,9 @@ def main():
 	files = get_files(files_path)
 	# df = pd.read_pickle("data/connected_sources/2016")
 	for file in files:
-
+		# file_name = file.split("\\")[-1]
 		file_name = file.split(sep)[-1]
+		# print(os.path.splitdrive(file)[1])
 		print("Year:", file_name)
 		# load the data 
 		df = pd.read_pickle(file)
@@ -133,7 +146,7 @@ def main():
 
 # After removing these columns, a  MODEL DATAFRAME WILL BE LEFT
 removeFromModel = ['#DBpURL', 'id', "ID", 'WikiURL', 'birthDate', 'deathDate', 'first_name',
-			   'full_name', 'name', 'nationality', 'occupation', 'party','name_u',"name_q"]
+				 'full_name', 'name', 'nationality', 'occupation', 'party','name_u',"name_q"]
 
 # After removing these columns, a MODEL 2 DATAFRAME WILL BE LEFT
 removeFromModel_2 = ['#DBpURL', 'id',"ID", 'WikiURL', 'birthDate', 'deathDate', 'first_name',
