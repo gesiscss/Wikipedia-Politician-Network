@@ -74,12 +74,12 @@ def extract_columns(df, nationality):
 
 	party_abr_lst = []
 	i = 0
-	for party in lst:
+	for value in lst:
 		i = i+1
 		party = "party"+str(i)
 		party_abr_lst.append(party)
 		print(party)
-		df = add_binary_column(df,"party",party,party)
+		df = add_binary_column(df,"party",party,value)
 	print(party_abr_lst)
 	df["other_p"] = df.apply(lambda x: other_to_bin(x, party_abr_lst), axis=1)
 
