@@ -103,6 +103,7 @@ def main():
 	
 	# load the files 
 	files = get_files(files_path)
+	print(files)
 	# df = pd.read_pickle("data/connected_sources/2016")
 	for file in files:
 		# file_name = file.split("\\")[-1]
