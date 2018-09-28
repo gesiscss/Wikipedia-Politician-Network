@@ -1,4 +1,3 @@
-
 # coding: utf-8
 
 import pandas as pd 
@@ -10,6 +9,9 @@ import sys
 import math
 import ast
 import sys
+
+
+#print(sys.getdefaultencoding())
 
 
 def clean(x):
@@ -116,9 +118,9 @@ def save_network(G, path_save,file,graph_type):
 
 if __name__ == "__main__":
 
-    path_files = sys.argv[1]
-    path_save = sys.argv[2]
-    graph_type = sys.argv[3]
+    path_files = "./data/graphs" ##sys.argv[1]
+    path_save = "./data/output-test" # sys.argv[2]
+    graph_type = "dir" #sys.argv[3]
 
     # # clean politician data
     # politician_data = pd.read_csv("data/politician-data.csv",quotechar='"',sep="\t",converters=
@@ -152,6 +154,11 @@ if __name__ == "__main__":
         print(file)
         net_df = load_df(path_files,file)
         G, num_n, num_e = set_attributes(net_df, politician_data,graph_type)
+        
+        print(num_n)
+        print(num_e)
+        print([n for n in G if n<3])
+        
         sub_lst = [file,num_n, num_e]
         lst.append(sub_lst)
         save_network(G,path_save,file.replace(".csv",""),graph_type)         
