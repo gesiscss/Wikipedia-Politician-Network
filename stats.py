@@ -92,6 +92,8 @@ def get_ratio(x, typ='fm'):
         # if f+m ==0:
         #     return 0
         return m/(f+m)
+
+
 def get_ratio_array(df, typ='fm'):
     """ Returns an array of ratio values for number of male nodes and female nodes
     """
@@ -99,3 +101,13 @@ def get_ratio_array(df, typ='fm'):
     df = df.sort_values("file")
     ratio = df.ratio.values
     return ratio
+
+
+
+def get_unidirectional_links(D):
+    R = nx.DiGraph()
+    G = D.to_undirected()
+    for (u, v) in D.edges():
+        if not D.has_edge(v, u):
+            R.add_edge(u,v)
+    return R
