@@ -1,4 +1,3 @@
-# coding: utf-8
 
 import pandas as pd 
 import networkx as nx
@@ -49,6 +48,7 @@ def load_df(path, file):
         1. path - to directory containing a file
         2. file - name of the file
     """
+    print(path+"/"+file)
     return pd.read_csv(path+"/"+file)
 
 
@@ -118,36 +118,15 @@ def save_network(G, path_save,file,graph_type):
 
 if __name__ == "__main__":
 
-    path_files = "./data/graphs" ##sys.argv[1]
-    path_save = "./data/output-test" # sys.argv[2]
-    graph_type = "dir" #sys.argv[3]
-
-    # # clean politician data
-    # politician_data = pd.read_csv("data/politician-data.csv",quotechar='"',sep="\t",converters=
-    #                           {"occupation":ast.literal_eval})
-
-    # politician_data["party"] = politician_data["party"].apply(clean)
-
-
-    # politician_data["nationality"] = politician_data["nationality"].apply(clean)
-
-    # politician_data["name"] = politician_data["name"].apply(clean)
-
-    # politician_data["birthDate"] = politician_data["birthDate"].apply(clean)
-    # politician_data["deathDate"] = politician_data["deathDate"].apply(clean)
-
-    # politician_data["birthDate"] = politician_data["birthDate"].apply(convert_date)
-    # politician_data["deathDate"] = politician_data["deathDate"].apply(convert_date)
-
-    # # replacing gender with infered gender
-    # politician_data = pd.read_json("data/politicians_with_gender.json")["gender"]
+    path_files =  sys.argv[1] #"./data/edge-list"
+    path_save = sys.argv[2] #"./data/output-test" 
+    graph_type = sys.argv[3]
 
     ######## ADD DATA SOURCE HERE: 
     politician_data = pd.read_pickle("data/politicians_with_gender")
 
     files = get_files(path_files)
-
-
+    # print(files)
 
     lst = []
     for file in files:
