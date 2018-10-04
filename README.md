@@ -123,4 +123,8 @@ Inside of this notebook, efficiency, which was previously calculated using the g
 
 Plots - network size and ratio are produced with codes from this notebook
 
+### unidirectional_links.ipynb
+
+Contains plots of the fraction of unidirectional links between politicians, as well as the fraction between male to female and female to male unidirectional links
+
 
