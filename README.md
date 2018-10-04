@@ -106,6 +106,15 @@ Saves 6 figures with two sub figures each. In this particular case, contains deg
 ```{r, engine='bash', count_lines}
 python hist_plot.py
 ```
+
+### save_network.py 
+
+Loads edge lists from the specified folder [edge_list_folder_path] and a file file with metadata on politicians, for each edge list from the folder, a graph is created, with ading the metadata for each node, after which it is saved at the specified location [save_path]. The graphs can be of different type, but for the purpose of this task just pass "dir" as the third argument. 
+
+```{r, engine='bash', count_lines}
+python save_network.py [edge_list_folder_path] [path_save] [dir]
+```
+
 ## Notebooks
 
 ### add_stats_to_network.ipynb 
