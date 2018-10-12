@@ -40,7 +40,7 @@ python save_network.py [path_files] [path_save] [graph_type]
 
 ### filter_graphs.py 
 
-This script copies fiels from **path_copy** to **path_paste**. The files are specified in the **filter.csv** file.
+This script copies files from **path_copy** to **path_paste**. The files are specified in the **filter.csv** file.
 
 ```{r, engine='bash', count_lines}
 python filter_graphs.py [path_copy] [path_paste] [filter.csv]
