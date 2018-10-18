@@ -18,6 +18,10 @@ As all the politicians from the original dataset (described above) do not have g
 
 Pageviews are collected for different time periods. As the [API](https://wikitech.wikimedia.org/wiki/Analytics/AQS/Pageviews#The_API) provides data post to mid 2015, annual pageviews for 2016 are fetched from it. However, annual pageview data was needed for previous years. [Dumps](https://dumps.wikimedia.org/other/pagecounts-raw/) are available for years: 2014,2013,2012,2011,2010, 2009 and 2008, and they were downloaded (for each hour of each day), parsed (for politicians only), and grouped by using [this code](https://github.com/gesiscss/wiki-download-parse-page-views).  
 
+## Guide
+
+Consult the [INTRO NOTEBOOK](https://github.com/gesiscss/Wikipedia-Politician-Network/blob/master/INTRO%20NOTEBOOK.ipynb) in order to gain better understanding of the project structure and the code. 
+
 ## Scripts
 
 ### filter_edgelist_data.py 
