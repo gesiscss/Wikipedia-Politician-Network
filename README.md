@@ -29,7 +29,7 @@ In order to run the code, install necessary dependencies stored in the:
 * [requirements.txt](https://github.com/gesiscss/Wikipedia-Politician-Network/blob/master/requirements.txt)
 
 
-> NOTE: For the calculation of efficiency, [GRAPH TOOL](https://graph-tool.skewed.de/) is needed, but it is not supported on Windows.
+> NOTE: For the calculation of efficiency, [GRAPH TOOL](https://graph-tool.skewed.de/) is needed, but it is not supported on Windows and this is how to [isntall it](https://git.skewed.de/count0/graph-tool/wikis/installation-instructions).
 
 ## Scripts
 
