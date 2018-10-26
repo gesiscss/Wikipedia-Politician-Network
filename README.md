@@ -22,6 +22,15 @@ Pageviews are collected for different time periods. As the [API](https://wikitec
 
 Consult the [INTRO NOTEBOOK](https://github.com/gesiscss/Wikipedia-Politician-Network/blob/master/INTRO%20NOTEBOOK.ipynb) in order to gain better understanding of the project structure and the code. 
 
+## Requirements
+
+In order to run the code, install necessary dependencies stored in the:
+* [requirements.yml](https://github.com/gesiscss/Wikipedia-Politician-Network/blob/master/requirements.yml) and 
+* [requirements.txt](https://github.com/gesiscss/Wikipedia-Politician-Network/blob/master/requirements.txt)
+
+
+> NOTE: For the calculation of efficiency, [GRAPH TOOL](https://graph-tool.skewed.de/) is needed, but it is not supported on Windows.
+
 ## Scripts
 
 ### filter_edgelist_data.py 
@@ -73,7 +82,7 @@ This script concurently downloads [Wikipedia pagecount dumps](https://dumps.wiki
 ```{r, engine='bash', count_lines}
 python downloader.py [file.csv] [path_save] [thread_number]
 ```
-**THE SERVER CAN CURRENTLY NOT TAKE MORE THAN 3 THREADS
+> NOTE: THE SERVER CAN CURRENTLY NOT TAKE MORE THAN 3 THREADS
 
 ### parser.py
 Opens specified list of files in **files_dir**, filters them per names in **names_file**, saves filtered files in **save_dir** using **num_threads** 
