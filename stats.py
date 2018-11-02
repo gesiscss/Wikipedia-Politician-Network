@@ -87,10 +87,9 @@ def get_ratio(x, typ='fm'):
         if f+m ==0:
             return 0
         return f/(f+m)
-    if typ == 'mf':
-        # 
-        # if f+m ==0:
-        #     return 0
+    if typ == 'mf': 
+        if f+m ==0:
+             return 0
         return m/(f+m)
 
 
