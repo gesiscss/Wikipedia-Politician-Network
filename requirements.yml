@@ -45,7 +45,7 @@ dependencies:
   - python=3.6.5=h0c2934d_0
   - python-dateutil=2.7.3=py36_0
   - pytz=2018.5=py36_0
-  - requests=2.18.4=py36h4371aae_1
+  - requests=2.20.0
   - scikit-learn=0.19.1=py36hae9bb9f_0
   - scipy=1.1.0=py36h4f6bf74_1
   - seaborn=0.8.1=py36_0
