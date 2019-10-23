@@ -32,7 +32,6 @@ numpy==1.15.3
 pandas==0.23.0
 para==0.0.6
 patsy==0.5.0
-Pillow==5.3.0
 pycparser==2.19
 pyOpenSSL==18.0.0
 pyparsing==2.2.2
